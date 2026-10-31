@@ -1,0 +1,10 @@
+#!/usr/bin/catpkg-command
+
+#@name default
+build
+#@description default
+Build .catpackage.
+#@declaration default
+build
+#@execute sh
+exec "__COMMANDS_DATA_DIR__/catpkg-build-cli" "$@"

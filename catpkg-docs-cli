@@ -1,0 +1,151 @@
+#!/bin/sh
+
+catpkg_installer_doc_path="./DOCS/catpkg-installer"
+catpkg_make_doc_path="./DOCS/catpkg-make"
+catpkg_doc_path="./DOCS/catpkg"
+CATPKG_METADATA_SPECIFICATION_doc_path="./DOCS/CATPKG_METADATA_SPECIFICATION"
+
+catpkg_console_font="./FONTS/default8x16.psf"
+catpkg_braille_font="./FONTS/brl-16.psf"
+catpkg_old_font="/tmp/catpkg-docs-old-font.psf"
+
+restore_font()
+{
+	if [ -f "$catpkg_old_font" ]; then
+		echo
+		echo "catpkg-docs: Restoring console font..."
+		sudo setfont "$catpkg_old_font"
+		rm -f "$catpkg_old_font"
+	fi
+}
+
+# Use custom console fonts only in Linux TTY.
+if [ "$TERM" = "linux" ] &&
+	command -v setfont >/dev/null 2>&1 &&
+	[ -f "$catpkg_console_font" ] &&
+	[ -f "$catpkg_braille_font" ]; then
+
+	echo "catpkg-docs: Installing temporary console fonts..."
+	echo "catpkg-docs: Administrator privileges are required to change the console font."
+
+	if sudo setfont -o "$catpkg_old_font" \
+		"$catpkg_console_font" \
+		"$catpkg_braille_font"; then
+
+		trap restore_font EXIT INT TERM
+	else
+		echo "catpkg-docs: Failed to install console fonts."
+	fi
+fi
+
+
+show_help()
+{
+	cat "./DOCS/SRC/TEXTBANER"
+	echo
+	echo "catpkg-docs: Documentation viewer"
+	echo
+	echo "Available documentation:"
+	echo "catpkg-docs installer | catpkg-installer"
+	echo "catpkg-docs make      | catpkg-make"
+	echo "catpkg-docs catpkg    | About catpkg"
+	echo "catpkg-docs CATPKG    | CATPKG_METADATA_SPECIFICATION"
+	echo
+	echo "Available commands:"
+	echo "  exit"
+	echo "  help"
+	echo
+}
+
+
+case "$1" in
+
+	--help)
+		show_help
+		;;
+
+	catpkg-installer|installer)
+		less "$catpkg_installer_doc_path"
+		;;
+
+	catpkg-make|make)
+		less "$catpkg_make_doc_path"
+		;;
+
+	catpkg)
+		less "$catpkg_doc_path"
+		;;
+
+	CATPKG|CATPKG_METADATA|CATPKG_METADATA_SPECIFICATION)
+		less "$CATPKG_METADATA_SPECIFICATION_doc_path"
+		;;
+
+	"")
+		show_help
+
+		while true; do
+			printf "\ncatpkg-docs: "
+			read doc
+
+			case "$doc" in
+
+				installer|catpkg-installer)
+					clear
+					{
+						echo "PRESS: 'q' FOR EXIT AND CHOOSE OTHER DOC."
+						echo
+						cat "$catpkg_installer_doc_path"
+					} | less
+					;;
+
+				make|catpkg-make)
+					clear
+					{
+						echo "PRESS: 'q' FOR EXIT AND CHOOSE OTHER DOC."
+						echo
+						cat "$catpkg_make_doc_path"
+					} | less
+					;;
+
+				catpkg)
+					clear
+					{
+						echo "PRESS: 'q' FOR EXIT AND CHOOSE OTHER DOC."
+						echo
+						cat "$catpkg_doc_path"
+					} | less
+					;;
+
+				CATPKG|CATPKG_METADATA|CATPKG_METADATA_SPECIFICATION)
+					clear
+					{
+						echo "PRESS: 'q' FOR EXIT AND CHOOSE OTHER DOC."
+						echo
+						cat "$CATPKG_METADATA_SPECIFICATION_doc_path"
+					} | less
+					;;
+
+				help)
+					show_help
+					;;
+				exit)
+					exit 0
+					;;
+
+				"")
+					;;
+
+				*)
+					echo "catpkg-docs: Unknown documentation: $doc"
+					;;
+			esac
+		done
+		;;
+
+	*)
+		show_help
+		echo "catpkg-docs: Unknown documentation: $1"
+		exit 1
+		;;
+
+esac

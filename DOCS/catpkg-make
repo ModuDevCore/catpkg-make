@@ -1,0 +1,81 @@
+=======================================================================================================
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⠛⠛⠛⠛⠛⠿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠋⠀⠀⠀⠀⠀⠀⠀⠀⠈⠻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡀⠀⠉⠀⣸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠁⠀⠀⠀⢀⣤⣤⣄⡀⠀⠀⠀⠘⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⠀⡀⠀⠹⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⣾⣿⣿⣿⣿⠀⠀⠀⠀⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠟⠋⠉⠉⠻⣿⣶⡄⠈⠙⠉⠉⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⠻⣿⣿⣿⠟⠀⠀⠀⠀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠁⠀⣠⠖⠀⠀⠈⠻⣿⣶⡖⠀⠸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⡿⠛⠉⠉⠻⣿⡇⣸⣿⠁⢀                                                              ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⡿⠋⠀⢀⣶⣦⣤⣿⣿⣿⠁⠀⠻  DETAILED TEXT DOCUMENTATION FOR WORKING WITH "CATPKG-MAKE"  ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⠀⢠⣶⣿⣿⣿⣿⣿⡿⠛⠳⣦⣀                                                              ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⡀⠀⠹⣿⣿⣿⣿⣿⣷⠀⠀⣿⣿⣿⣿⣿⡇⠀⠀⠀⢀⠀⠀⠀⢹⣿⣿⣿⣿⡿⠁⠀⠀⠀⣰⣿⣿⣿⡇⠀⣿⣿⣿⣿⠀⢸⣿⠛⠉⠉⠉⠉⠙⢿⣿⣿⠟⠉⠉⠉⠉⠙⢿⣿⡇⠀⣿⡿⠛⠉⢹⡿⠛⠉⠉⠉⠉⠛⢿⣿⡿⠛⠉⠉⠉⠉⠉⠉⣿⡿⠛⠉⠉⠉⠉⠙⠻⣿
+⣿⣿⣿⣿⣿⣿⣦⡀⠈⠻⣿⣿⠟⠃⢀⣴⣿⣿⣿⣿⣿⡇⠀⠀⠀⢺⣿⣶⣶⣤⣿⣿⣿⡟⠁⠀⠀⠀⣰⣿⣿⣿⣿⡇⠀⠛⠛⠛⠋⠀⣼⣶⣶⠴⠶⠶⠶⠄⢸⣿⡇⠀⢰⣶⣶⣶⣤⣼⣿⡇⠀⠛⠀⣀⣴⣿⣶⣶⠴⠶⠶⠶⠄⠈⣿⡇⠀⣶⣶⣶⣶⠀⠀⣿⡇⠀⠴⠶⠶⠶⠄⠀⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣦⡀⠀⠀⢀⣰⣿⣿⣿⣿⣿⣿⣿⣇⠀⠀⠀⠈⢻⣿⣿⣿⣿⣿⠟⠀⠀⠀⠀⣰⣿⣿⣿⣿⣿⡇⠀⣶⣶⣶⣶⣿⣿⠛⠉⢠⣤⣤⣤⡄⢸⣿⡇⠀⢸⣿⣿⣿⣿⣿⣿⡇⠀⣀⠀⠙⢿⣿⠛⠉⣠⣤⣤⣤⠀⠀⣿⡇⠀⣿⣿⣿⣿⠀⠀⣿⡇⠀⣀⣀⣀⣀⣤⣼⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣆⠀⠀⠀⠀⠉⠛⠛⠛⠁⠀⠀⠀⠀⣴⣿⣿⣿⣿⣿⣿⡇⠀⣿⣿⣿⣿⣿⣿⣧⠀⠘⠛⠛⠋⠀⢸⣿⣧⡀⠘⠛⠛⠛⠀⣸⣿⡇⠀⣿⣦⡀⠀⠙⡇⠀⠙⠛⠛⠁⠀⠀⣿⣇⠀⠙⠛⠛⠋⠀⠀⣿⣇⠀⠘⠛⠛⠛⠙⢻⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣦⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣼⣿⣿⣿⣿⣿⣿⣿⣷⣶⣿⣿⣿⣿⣿⣿⣿⣷⣶⣶⣶⣶⣷⣾⣿⣿⣿⣶⣶⣶⣶⣶⣿⣿⣷⣶⣿⣿⣿⣶⣶⣿⣷⣶⣶⣶⣾⣶⣶⣿⡏⠑⢶⣶⣶⣶⠀⠀⣿⣿⣿⣶⣶⣶⣶⣾⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣶⣤⣤⣤⣤⣴⣶⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣧⣄⣀⣀⣀⣀⣠⣴⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+=======================================================================================================
+
+A brief overview of key terms:
+
+`%a10e`
+    Processor architecture.
+`->`
+    Then.
+
+(1) INFO ABOUT UTILITY
+=======================================================================================================
+
+The build master for x86_64 and aarch64 architectures, both in x86_64 systems and in aarch64 systems. 
+It is used for building:
+	1)	catpkg (Various contents)
+
+	2)	catpkg-installer-%a10e (catpkg installation master)
+	
+	3)	catpkg-make-%a10e (Updating the current version or building another architecture)
+
+Launch: 
+`./catpkg-make-%a10e`
+
+Permissions to run: Default.
+
+(2) USAGE
+=======================================================================================================
+
+	To launch, use `./catpkg-make-%a10e`. You will be prompted to enter a number: “Enter a number:” 
+to select an option:
+	1)	Building the catpkg-(aarch64/x86_64)@X.X.X.catpackage
+
+	2)	Building catpkg-installer-(aarch64/x86_64)@X.X.X 
+	( catpkg-(aarch64/x86_64)@X.X.X.catpackage build is required )
+	
+	3)	catpkg-make-(aarch64/x86_64) ( Update )
+
+< P.S. About options >
+1 - This option creates a package .tmp/catpkg-(aarch64/x86_64)@X.X.X.catpackage,
+with the architecture of your choice; the version is automatically taken from build-data/PACKAGEINFO.
+
+2 - This parameter creates the main binary installation 
+file catpkg with the option to select the processor architecture; 
+the package Building the catpkg-(aarch64/x86_64)@X.X.X.catpackage is used for the build.
+
+3 - Updates or creates a build master with architecture selection.
+
+-> To confirm, press “Enter”.
+
+	Regardless of the selected option, enter the number “Enter a number: ” 
+to select the available architectures for the build.
+
+-> To confirm, press “Enter”.
+
+After that, the assembly process will continue.
+
+(X) OTHER
+=======================================================================================================
+Related:
+catpkg-docs installer ( catpkg-installer )
+catpkg-docs make ( catpkg-make )
+catpkg-docs catpkg ( About catpkg )
+catpkg-docs CATPKG ( CATPKG_METADATA_SPECIFICATION )

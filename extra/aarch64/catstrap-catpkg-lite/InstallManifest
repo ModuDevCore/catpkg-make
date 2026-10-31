@@ -1,0 +1,5 @@
+packages/filesystem@1.0.catpackage
+packages/catstrap-bin@2.0.0-beta.catpackage
+packages/catstraplib@2.0.0-beta.catpackage
+packages/catpkg@2.0.0-beta.catpackage
+packages/catpkg-build@1.0.0-beta.catpackage

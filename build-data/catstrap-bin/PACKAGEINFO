@@ -1,0 +1,15 @@
+CATPKG 1.0
+catstrap-bin
+-
+2.0.0-beta
+-
+__ARCHITECTURE__
+-
+A collection of binaries required for Catstrap operation.
+-
+__SHA__
+-
+__SIZE__
+-
+filesystem
+-

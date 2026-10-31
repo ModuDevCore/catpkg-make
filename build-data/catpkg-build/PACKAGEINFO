@@ -1,0 +1,20 @@
+CATPKG 1.0
+catpkg-build
+-
+1.0.0-beta
+-
+__ARCHITECTURE__
+-
+The catpkg extension for building packages .catpackage
+-
+__SHA__
+-
+__SIZE__
+-
+catpkg
+-
+#prot __PROT_PAYLOAD_EXCLUDE__ CATPKG-BUILD-COMMAND
+#prot __PROT_PAYLOAD_EXCLUDE__ extra/COMMAND_DATA/catpkg-build-cli
+
+#prot __PROT_CTPG_MKCMD_BUILD__ CATPKG-BUILD-COMMAND
+#prot __PROT_CTPG_EXTRACT_MAPPED__ extra/COMMAND_DATA/catpkg-build-cli:\__COMMANDS_DATA_DIR__/catpkg-build-cli

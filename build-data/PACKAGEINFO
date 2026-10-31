@@ -1,0 +1,22 @@
+CATPKG 1.0
+catpkg
+-
+2.0.0-beta
+-
+__ARCHITECTURE__
+-
+Native and relative package manager.
+-
+__SHA__
+-
+__SIZE__
+-
+catstraplib
+-
+#prot __PROT_MKDIR_SOFT__ /var/lib/catpkg
+#prot __PROT_MKDIR_SOFT__ /var/lib/catpkg/commands
+#prot __PROT_MKDIR_SOFT__ /var/lib/catpkg/packages
+#prot __PROT_MKDIR_SOFT__ /var/cache/catpkg/packages
+
+#prot __PROT_SYMLINK__ /usr/lib/catpkg/catstraplib.so.2.0.0b:/usr/lib/catstraplib.so.0
+#prot __PROT_EXCEPTION__ EEXIST:0
