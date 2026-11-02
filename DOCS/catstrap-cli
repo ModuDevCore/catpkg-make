@@ -1,0 +1,214 @@
+=======================================================================================================
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⠛⠛⠛⠛⠛⠿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠋⠀⠀⠀⠀⠀⠀⠀⠀⠈⠻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡀⠀⠉⠀⣸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠁⠀⠀⠀⢀⣤⣤⣄⡀⠀⠀⠀⠘⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⠀⡀⠀⠹⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⣾⣿⣿⣿⣿⠀⠀⠀⠀⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠟⠋⠉⠉⠻⣿⣶⡄⠈⠙⠉⠉⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⠻⣿⣿⣿⠟⠀⠀⠀⠀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠁⠀⣠⠖⠀⠀⠈⠻⣿⣶⡖⠀⠸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⡿⠛⠉⠉⠻⣿⡇⣸⣿⠁⢀⣶⣷⠂⠀⢈⡟⠀⠀⠀⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠇⠀⠀⠀⠀⠀⠀⠀⣠⣴⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⡿⠋⠀⢀⣶⣦⣤⣿⣿⣿⠁⠀⠻⠟⠁⠀⣰⡟⠀⠀⠀⠀⠘⣿⣿⣿⣿⣿⣿⣿⣿⠏⠀⠀⠀⠀⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⠀⢠⣶⣿⣿⣿⣿⣿⡿⠛⠳⣦⣀⣀⣴⣾⡿⠃⠀⠀⠀⠀⠀⠹⣿⣿⣿⣿⣿⣿⡿⠀⠀⠀⠀⣸⣿⣿⡇⠀⣀⣀⣀⡀⠙⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⠀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⡀⠀⠹⣿⣿⣿⣿⣿⣷⠀⠀⣿⣿⣿⣿⣿⡇⠀⠀⠀⢀⠀⠀⠀⢹⣿⣿⣿⣿⡿⠁⠀⠀⠀⣰⣿⣿⣿⡇⠀⣿⣿⣿⣿⠀⢸⣿⠛⠉⠉⠉⠉⠙⢿⣿⣿⠟⠉⠉⠉⠉⠙⢿⣿⡇⠀⣿⡿⠛⠉⢹⡿⠛⠉⠉⠉⠉⠛⢿⣿⡿⠛⠉⠉⠉⠉⠉⠉⣿⡿⠛⠉⠉⠉⠉⠙⠻⣿
+⣿⣿⣿⣿⣿⣿⣦⡀⠈⠻⣿⣿⠟⠃⢀⣴⣿⣿⣿⣿⣿⡇⠀⠀⠀⢺⣿⣶⣶⣤⣿⣿⣿⡟⠁⠀⠀⠀⣰⣿⣿⣿⣿⡇⠀⠛⠛⠛⠋⠀⣼⣶⣶⠴⠶⠶⠶⠄⢸⣿⡇⠀⢰⣶⣶⣶⣤⣼⣿⡇⠀⠛⠀⣀⣴⣿⣶⣶⠴⠶⠶⠶⠄⠈⣿⡇⠀⣶⣶⣶⣶⠀⠀⣿⡇⠀⠴⠶⠶⠶⠄⠀⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣦⡀⠀⠀⢀⣰⣿⣿⣿⣿⣿⣿⣿⣇⠀⠀⠀⠈⢻⣿⣿⣿⣿⣿⠟⠀⠀⠀⠀⣰⣿⣿⣿⣿⣿⡇⠀⣶⣶⣶⣶⣿⣿⠛⠉⢠⣤⣤⣤⡄⢸⣿⡇⠀⢸⣿⣿⣿⣿⣿⣿⡇⠀⣀⠀⠙⢿⣿⠛⠉⣠⣤⣤⣤⠀⠀⣿⡇⠀⣿⣿⣿⣿⠀⠀⣿⡇⠀⣀⣀⣀⣀⣤⣼⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣆⠀⠀⠀⠀⠉⠛⠛⠛⠁⠀⠀⠀⠀⣴⣿⣿⣿⣿⣿⣿⡇⠀⣿⣿⣿⣿⣿⣿⣧⠀⠘⠛⠛⠋⠀⢸⣿⣧⡀⠘⠛⠛⠛⠀⣸⣿⡇⠀⣿⣦⡀⠀⠙⡇⠀⠙⠛⠛⠁⠀⠀⣿⣇⠀⠙⠛⠛⠋⠀⠀⣿⣇⠀⠘⠛⠛⠛⠙⢻⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣦⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣼⣿⣿⣿⣿⣿⣿⣿⣷⣶⣿⣿⣿⣿⣿⣿⣿⣷⣶⣶⣶⣶⣷⣾⣿⣿⣿⣶⣶⣶⣶⣶⣿⣿⣷⣶⣿⣿⣿⣶⣶⣿⣷⣶⣶⣶⣾⣶⣶⣿⡏⠑⢶⣶⣶⣶⠀⠀⣿⣿⣿⣶⣶⣶⣶⣾⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣶⣤⣤⣤⣤⣴⣶⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣧⣄⣀⣀⣀⣀⣠⣴⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+=======================================================================================================
+
+A brief overview of key terms:
+
+`<package>`
+    A package file or package name, depending on the command.
+
+
+(1) INFO ABOUT UTILITY
+=======================================================================================================
+
+This is the catpkg-cli installation assistant for installing the primary packages
+(the catpkg package manager itself is not required).
+
+It is an executable CAST archive containing the required binary files, packages,
+package information, and cast-cli. In the case of catstrap, cast-cli is executable
+and performs the role of the installer.
+
+catstrap can be used on an empty minimal system to pre-install the packages required
+for the system to operate. It initializes the catstrap database and serves as the
+primary package manager during the initial installation process.
+
+
+Permissions:
+
+`--install`
+    Root privileges required.
+
+`--remove`
+    Root privileges required.
+
+`--update`
+    Root privileges required.
+
+`--packages`
+    Default user permissions.
+
+`--list`
+    Default user permissions.
+
+
+# (2) COMMANDS
+=======================================================================================================
+
+## (2.1) INSTALL
+-------------------------------------------------------------------------------------------------------
+
+Usage:
+
+`sudo catstrap-catpkg-* --install`
+
+Install or update all packages provided by `catstrap-catpkg`.
+
+Example:
+
+`sudo catstrap-catpkg-* --install`
+
+OR
+
+Usage:
+
+`sudo catstrap-catpkg-* --install <package_name>`
+
+Install or update a package provided by `catstrap-catpkg`.
+
+Example:
+
+`sudo catstrap-catpkg-* --install catpkg`
+
+OR
+
+Usage:
+
+`sudo catstrap-catpkg-* --install <package_name_1> <package_name_2> <package_name_N>`
+
+Install or update several packages provided by `catstrap-catpkg`.
+
+Example:
+
+`sudo catstrap-catpkg-* --install filesystem catstrap-bin catstraplib catpkg`
+
+Before installation, catstrap-catpkg displays information about the package
+and asks for confirmation.
+
+The command requires root privileges.
+
+## (2.2) UPDATE
+-------------------------------------------------------------------------------------------------------
+
+Usage:
+
+`sudo catstrap-catpkg-* --update`
+
+Update all packages provided by `catstrap-catpkg`.
+
+Example:
+
+`sudo catstrap-catpkg-* --update`
+
+OR
+
+Usage:
+
+`sudo catstrap-catpkg-* --update <package_name>`
+
+Update a package provided by `catstrap-catpkg`.
+
+Example:
+
+`sudo catstrap-catpkg-* --update catpkg`
+
+OR
+
+Usage:
+
+`sudo catstrap-catpkg-* --update <package_name_1> <package_name_2> <package_name_N>`
+
+Update several packages provided by `catstrap-catpkg`.
+
+Example:
+
+`sudo catstrap-catpkg-* --update filesystem catstrap-bin catstraplib catpkg`
+
+Before updating, catstrap-catpkg displays information about the package
+and asks for confirmation.
+
+The command requires root privileges.
+
+
+## (2.3) REMOVE
+-------------------------------------------------------------------------------------------------------
+
+Usage:
+
+`sudo catstrap-catpkg-* --remove`
+
+Remove all packages provided by `catstrap-catpkg`.
+
+Example:
+
+`sudo catstrap-catpkg-* --remove`
+
+OR
+
+Usage:
+
+`sudo catstrap-catpkg-* --remove <package_name>`
+
+Remove a package provided by `catstrap-catpkg`.
+
+Example:
+
+`sudo catstrap-catpkg-* --remove catpkg`
+
+OR
+
+Usage:
+
+`sudo catstrap-catpkg-* --remove <package_name_1> <package_name_2> <package_name_N>`
+
+Remove several packages provided by `catstrap-catpkg`.
+
+Example:
+
+`sudo catstrap-catpkg-* --remove filesystem catstrap-bin catstraplib catpkg`
+
+Before removal, catstrap-catpkg displays information about the package
+and asks for confirmation.
+
+The command requires root privileges.
+
+
+## (2.4) PACKAGES
+-------------------------------------------------------------------------------------------------------
+
+Usage:
+
+`sudo catstrap-catpkg-* --packages`
+
+Outputs a list of packages provided by `catstrap-catpkg`, including their names,
+to the console.
+
+Example:
+
+`sudo catstrap-catpkg-* --packages`
+
+
+(X) OTHER
+=======================================================================================================
+
+Related:
+
+    catpkg-docs installer (catpkg-installer)
+    catpkg-docs make (catpkg-make)
+    catpkg-docs catpkg (About catpkg)
+    catpkg-docs CATPKG (CATPKG_METADATA_SPECIFICATION)

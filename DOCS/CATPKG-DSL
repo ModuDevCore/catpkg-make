@@ -1,0 +1,490 @@
+=======================================================================================================
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⠛⠛⠛⠛⠛⠿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠋⠀⠀⠀⠀⠀⠀⠀⠀⠈⠻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡀⠀⠉⠀⣸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠁⠀⠀⠀⢀⣤⣤⣄⡀⠀⠀⠀⠘⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⠀⡀⠀⠹⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⣾⣿⣿⣿⣿⠀⠀⠀⠀⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠟⠋⠉⠉⠻⣿⣶⡄⠈⠙⠉⠉⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⠻⣿⣿⣿⠟⠀⠀⠀⠀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠁⠀⣠⠖⠀⠀⠈⠻⣿⣶⡖⠀⠸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⡿⠛⠉⠉⠻⣿⡇⣸⣿⠁⢀⣶⣷⠂⠀⢈⡟⠀⠀⠀⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠇⠀⠀⠀⠀⠀⠀⠀⣠⣴⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⡿⠋⠀⢀⣶⣦⣤⣿⣿⣿⠁⠀⠻⠟⠁⠀⣰⡟⠀⠀⠀⠀⠘⣿⣿⣿⣿                                    ⣿⡿⠿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⠀⢠⣶⣿⣿⣿⣿⣿⡿⠛⠳⣦⣀⣀⣴⣾⡿⠃⠀⠀⠀⠀⠀⠹⣿⣿⣿    CATPKG METADATA SPECIFICATION   ⣿⡇⠀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⡀⠀⠹⣿⣿⣿⣿⣿⣷⠀⠀⣿⣿⣿⣿⣿⡇⠀⠀⠀⢀⠀⠀⠀⢹⣿⣿                                    ⣿⡇⠀⣿⡿⠛⠉⢹⡿⠛⠉⠉⠉⠉⠛⢿⣿⡿⠛⠉⠉⠉⠉⠉⠉⣿⡿⠛⠉⠉⠉⠉⠙⠻⣿
+⣿⣿⣿⣿⣿⣿⣦⡀⠈⠻⣿⣿⠟⠃⢀⣴⣿⣿⣿⣿⣿⡇⠀⠀⠀⢺⣿⣶⣶⣤⣿⣿⣿⡟⠁⠀⠀⠀⣰⣿⣿⣿⣿⡇⠀⠛⠛⠛⠋⠀⣼⣶⣶⠴⠶⠶⠶⠄⢸⣿⡇⠀⢰⣶⣶⣶⣤⣼⣿⡇⠀⠛⠀⣀⣴⣿⣶⣶⠴⠶⠶⠶⠄⠈⣿⡇⠀⣶⣶⣶⣶⠀⠀⣿⡇⠀⠴⠶⠶⠶⠄⠀⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣦⡀⠀⠀⢀⣰⣿⣿⣿⣿⣿⣿⣿⣇⠀⠀⠀⠈⢻⣿⣿⣿⣿⣿⠟⠀⠀⠀⠀⣰⣿⣿⣿⣿⣿⡇⠀⣶⣶⣶⣶⣿⣿⠛⠉⢠⣤⣤⣤⡄⢸⣿⡇⠀⢸⣿⣿⣿⣿⣿⣿⡇⠀⣀⠀⠙⢿⣿⠛⠉⣠⣤⣤⣤⠀⠀⣿⡇⠀⣿⣿⣿⣿⠀⠀⣿⡇⠀⣀⣀⣀⣀⣤⣼⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣆⠀⠀⠀⠀⠉⠛⠛⠛⠁⠀⠀⠀⠀⣴⣿⣿⣿⣿⣿⣿⡇⠀⣿⣿⣿⣿⣿⣿⣧⠀⠘⠛⠛⠋⠀⢸⣿⣧⡀⠘⠛⠛⠛⠀⣸⣿⡇⠀⣿⣦⡀⠀⠙⡇⠀⠙⠛⠛⠁⠀⠀⣿⣇⠀⠙⠛⠛⠋⠀⠀⣿⣇⠀⠘⠛⠛⠛⠙⢻⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣦⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣼⣿⣿⣿⣿⣿⣿⣿⣷⣶⣿⣿⣿⣿⣿⣿⣿⣷⣶⣶⣶⣶⣷⣾⣿⣿⣿⣶⣶⣶⣶⣶⣿⣿⣷⣶⣿⣿⣿⣶⣶⣿⣷⣶⣶⣶⣾⣶⣶⣿⡏⠑⢶⣶⣶⣶⠀⠀⣿⣿⣿⣶⣶⣶⣶⣾⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣶⣤⣤⣤⣤⣴⣶⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣧⣄⣀⣀⣀⣀⣠⣴⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+=======================================================================================================
+
+A brief overview of key terms:
+
+`sap-section`
+    A section defined according to the following rules:
+
+        1) If there are no sections before or after the content, the content itself is a sap-section.
+
+        2) If there are no sections before the content, but there are sections after it,
+           the sap-section is the content followed by a separator `-` on a separate line.
+
+        3) If there are sections before the content, but no sections after it,
+           the sap-section is the content preceded by a separator `-` on a separate line.
+
+        4) If there are sections both before and after the content,
+           the sap-section is the content enclosed by separators `-` placed on separate lines.
+
+`->`
+    Then.
+
+
+(1) A BIT ABOUT VERSION NOTATION
+=======================================================================================================
+
+(CATPKG 1.X)
+
+    The major version CATPKG 1 defines a format based on divided sap-sections. For example:
+
+`
+CATPKG 1.X
+package_name
+-
+__ARCHITECTURE__
+-
+Description
+-
+__SHA__
+-
+package_name1
+package_name2
+package_name3
+-
+-
+#option1 option text 1
+#option1 option text 2
+#option2 option text 3
+#option3 option text 4
+`
+
+    In a CATPKG 1.X specification, each sap-section has its own designation. For example:
+
+        0 - title
+        1 - architecture
+        2 - description
+        3 - sha256 (payload signature)
+        4 - dependencies
+        5 - options
+
+    Options were added as a standard mechanism for the mandatory declaration of additional values.
+
+    The minor version (CATPKG 1.0, 1.1, 1.2...) defines a specification that determines
+    how each primitive and section is designated and interpreted. These specifications
+    are described below.
+
+
+(CATPKG 2.0)
+
+    Version 2.0 is a standard intended to provide a more convenient user experience
+    and will be introduced as part of a future release.
+
+
+(2) CATPKG 1 DSL
+=======================================================================================================
+
+CATPKG 1 DSL assumes that when using the catstrap postprocessor and its macros, you should read more
+in `catstrap-postprocess` (./catstrap-postprocess).
+
+(2.1) CATPKG 1 - NOTATIONS
+-------------------------------------------------------------------------------------------------------
+
+`#`
+    When placed immediately after a line break (`\n`), marks the beginning of an option declaration.
+    The declaration continues until the next line break (`\n`).
+
+`//`
+    Everything from this notation to the next line break (`\n`) is ignored during parsing
+    and is considered a comment.
+
+`-`
+    Section delimiter symbol (see §2.2).
+
+
+(2.2) CATPKG 1 - SAP-SECTION DECLARATION
+-------------------------------------------------------------------------------------------------------
+
+A sap-section is a section delimited using `-`.
+
+A sap-section may have different meanings and declarations. The standard declarations
+are described below.
+
+
+(Non-existent section)
+
+`
+-
+-
+`
+
+    This is a non-existent section and returns a NULL value.
+
+    It is still considered a section. Therefore, this is the standard way to skip a section
+    when, for any reason, its value should be filled in automatically later.
+
+    A sap-section is considered non-existent if it does not contain a single character.
+
+    For clarification, see "A brief overview of key terms".
+
+
+(Existing section)
+
+`
+-
+
+-
+`
+
+    A section is considered to exist if the sap-section contains at least one character,
+    including a line break.
+
+
+(Single-line section)
+
+`
+-
+Hello world
+-
+`
+
+    A standard single-line section is considered single-line if its sap-section contains
+    exactly one line break character (`\n`).
+
+    For clarification, see "A brief overview of key terms".
+
+
+(Multiple-line section)
+
+`
+-
+Hello world 1
+Hello world 2
+Hello world 3
+-
+`
+
+    A standard multiple-line section is considered multiple-line if its sap-section contains
+    more than one line break character (`\n`).
+
+    For clarification, see "A brief overview of key terms".
+
+
+(2.3) CATPKG 1 - OPTIONS DECLARATION
+-------------------------------------------------------------------------------------------------------
+
+Options provide a formal mechanism for adding additional values and metadata to CATPKG 1.
+
+An option begins with `#`, followed by the option name:
+
+`
+#option_name
+`
+
+The option name may be followed by a space and its associated value:
+
+`
+#option_name text for option
+`
+
+Options are commonly interpreted as separate arguments. Therefore, there is also
+an informal convention for representing option values as arguments:
+
+`
+#option_name arg1 arg2 arg3
+`
+
+Depending on the specification, the value may instead be interpreted as a single
+piece of data.
+
+
+(3) CATPKG 1.0/1.1 SPECIFICATIONS
+=======================================================================================================
+
+The CATPKG 1 format defines primitives, templates, notations, and other structural elements.
+Minor versions (1.0, 1.1, etc.) define specifications for these primitives and implement
+the format for a particular purpose.
+
+This section describes the various specifications of the CATPKG 1 format.
+
+More precisely, a specification defines:
+
+    - SECTION NAMES
+    - SECTION DECLARATIONS
+    - INTERNAL SECTION SPECIFICATIONS
+
+
+(3.1) CATPKG 1.0 - PATCH 0
+-------------------------------------------------------------------------------------------------------
+
+(3.1.1) SECTION NAMES
+
+    0 - name
+        The name of the package.
+
+    1 - version
+        The package version.
+
+    2 - architecture
+        The processor architecture for which the package is designed.
+
+    3 - description
+        A brief description of the package.
+
+    4 - SHA
+        The SHA-256 signature of the payload.
+
+    5 - dependency
+        Dependencies of the current package.
+
+    7 - options
+        Options of the current package. They may serve both as a static description
+        of the package and as declarations of actions that need to be performed
+        when working with the package.
+
+
+(3.1.2) SECTION DECLARATIONS
+
+    0 - (Single-line section), (Existing section)
+
+    1 - (Single-line section), (Existing section)
+
+    2 - (Single-line section), (Existing section)
+
+    3 - (Multiple-line section) OR (Single-line section) OR (Non-existent section)
+
+    4 - (Single-line section), (Existing section)
+
+    5 - (Multiple-line section) OR (Single-line section) OR (Non-existent section)
+
+    6 - (Multiple-line section) OR (Single-line section) OR (Non-existent section)
+
+
+(3.1.3) INTERNAL SECTION SPECIFICATIONS
+
+    (3.1.3.1) OPTIONS - options (see §3.1.1)
+
+
+(*.1) BUILDER PROTOCOL
+
+`
+#prot n value
+`
+
+`
+#prot n arg0:arg1:arg2
+`
+
+    n
+        Protocol number (depends on the package manager version).
+
+    value
+        A single value passed to the protocol.
+
+    [arg0, arg1, arg2... argI]
+        Values passed to the protocol as separate arguments, ordered from 0 to I
+        and separated by the colon symbol (`:`).
+
+
+(*.2) WHERE
+
+`
+#WHERE ((<left_operand>) is (<right_operand>))
+`
+
+* NOTATIONS
+
+    `<left_operand>` / `<right_operand>`
+        Operands that imply the use of a postprocessor to substitute a value
+        for the corresponding macro.
+
+    `is`
+        A pseudo-operator used to compare operand values.
+        The values themselves are treated as text.
+
+
+(*.2.1) `#WHERE_END`
+
+    A non-independent option that indicates the end of the `#WHERE` option.
+
+
+    (3.1.3.2) DEPENDENCIES DECLARATION - dependency (see §3.1.1)
+
+`
+catpackage_name1
+catpackage_name2
+catpackage_name3
+`
+
+    Package dependencies are written on separate lines.
+    Each dependency refers to the PACKAGENAME of the requested package.
+
+
+    (3.1.3.3) VERSION DECLARATION - version (see §3.1.1)
+
+`
+X.Y.Z
+`
+
+OR
+
+`
+X.Y.Z-release
+`
+
+
+(3.2) CATPKG 1.1 - PATCH 1
+-------------------------------------------------------------------------------------------------------
+
+(3.2.1) SECTION NAMES
+
+    0 - options
+        Options provide additional metadata associated with sections.
+
+    [1, 2, 3 ... I] - info
+        Sections containing options that store information about the corresponding section.
+
+
+(3.2.2) SECTION DECLARATIONS
+
+    0 - (Multiple-line section) OR (Single-line section), (Existing section)
+
+    [1, 2, 3 ... I] -
+        (Multiple-line section) OR (Single-line section), (Existing section)
+
+
+(3.2.3) INTERNAL SECTION SPECIFICATIONS
+
+    (3.2.3.1) OPTIONS - options (see §3.2.1)
+
+
+(*.1) USE-OPTIONS
+
+`
+#use-options path/to/FILEOPTIONS
+`
+
+`
+#use-options /absolute/path/to/FILEOPTIONS
+`
+
+* NOTATIONS
+
+    `path/to/FILEOPTIONS` / `/absolute/path/to/FILEOPTIONS`
+        Path to a file containing options (e.g., POLICY or DEPENDENCIES).
+
+
+(*.2) REQUIRED
+
+`
+#required I=package_name
+`
+
+* NOTATIONS
+
+    `I`
+        Section index.
+
+    `package_name`
+        The name of the package that declares a dependency on section I.
+
+
+(*.3) PROTECTED
+
+`
+#protected I
+`
+
+* NOTATIONS
+
+    `I`
+        Section index.
+
+
+    (3.2.3.2) SECTION INFO - info (see §3.2.1)
+
+
+(*.1) TYPE
+
+`
+#type symlink/file/directory
+`
+
+* NOTATIONS
+
+    `symlink/file/directory`
+        The value must be `symlink`, `directory`, or `file`.
+
+
+(*.2) PATH
+
+`
+#path /path/to/file/or/folder
+`
+
+* NOTATIONS
+
+    `/path/to/file/or/folder`
+        The path associated with the section.
+
+
+(*.3) TARGET
+
+`
+#target /path/to/target
+`
+
+* NOTATIONS
+
+    `/path/to/target`
+        The path referenced by the section.
+
+
+(*.4) SOURCE
+
+`
+#source /path/to/source
+`
+
+* NOTATIONS
+
+    `/path/to/source`
+        The source from which the path was obtained.
+
+
+(4) GENERAL RULES
+=======================================================================================================
+
+To indicate the CATPKG version, specify the version on the first line of the file.
+
+For example:
+
+`
+CATPKG 1.0
+`
+
+`
+CATPKG 1.1
+`
+
+`
+CATPKG 2.0
+`
+
+
+(X) OTHER
+=======================================================================================================
+
+Related:
+
+    catpkg-docs installer (catpkg-installer)
+    catpkg-docs make (catpkg-make)
+    catpkg-docs catpkg (About catpkg)
+    catpkg-docs CATPKG (CATPKG DSL)

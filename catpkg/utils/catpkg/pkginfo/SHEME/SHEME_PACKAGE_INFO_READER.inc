@@ -161,42 +161,11 @@ case 4: {
     break;
 }
 
-
 /*
- * Section 5 — package size.
+ * Section 5 — dependencies.
  */
 
 case 5: {
-
-    if (strcmp(buffer, "-") == 0) {
-        (*current_section)++;
-        break;
-    }
-
-    if (buffer[0] == '\0') {
-        fprintf(
-            stderr,
-            "catpkg: package size cannot be empty\n"
-        );
-
-        return -1;
-    }
-
-    ADD_FIELD(
-        "size",
-        buffer,
-        field_bytepos
-    );
-
-    break;
-}
-
-
-/*
- * Section 6 — dependencies.
- */
-
-case 6: {
     if (strcmp(buffer, "-") == 0) {
         (*current_section)++;
 
@@ -238,10 +207,10 @@ case 6: {
 
 
 /*
- * Section 7 — filesystem operations.
+ * Section 6 — filesystem operations.
  */
 
-case 7: {
+case 6: {
 
     if (buffer[0] == '\0')
         break;

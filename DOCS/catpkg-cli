@@ -1,14 +1,14 @@
 =======================================================================================================
 ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⠛⠛⠛⠛⠛⠿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⠛⠛⠛⠛⠛⠿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
 ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠋⠀⠀⠀⠀⠀⠀⠀⠀⠈⠻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡀⠀⠉⠀⣸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠁⠀⠀⠀⢀⣤⣤⣄⡀⠀⠀⠀⠘⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⠀⡀⠀⠹⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⣾⣿⣿⣿⣿⠀⠀⠀⠀⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠟⠋⠉⠉⠻⣿⣶⡄⠈⠙⠉⠉⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⠻⣿⣿⣿⠟⠀⠀⠀⠀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡀⠀⠉⠀⣸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠁⠀⠀⠀⢀⣤⣤⣄⡀⠀⠀⠀⠘⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⠀⡀⠀⠹⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⣾⣿⣿⣿⣿⠀⠀⠀⠀⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠟⠋⠉⠉⠻⣿⣶⡄⠈⠙⠉⠉⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⠻⣿⣿⣿⠟⠀⠀⠀⠀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
 ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠁⠀⣠⠖⠀⠀⠈⠻⣿⣶⡖⠀⠸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-⣿⣿⣿⣿⣿⣿⣿⡿⠛⠉⠉⠻⣿⡇⣸⣿⠁⢀⣶⣷⠂⠀⢈⡟⠀⠀⠀⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠇⠀⠀⠀⠀⠀⠀⠀⣠⣴⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-⣿⣿⣿⣿⣿⡿⠋⠀⢀⣶⣦⣤⣿⣿⣿⠁⠀⠻⠟⠁⠀⣰⡟⠀⠀⠀⠀⠘⣿⣿⣿⣿⣿⣿⣿⣿⠏⠀⠀⠀⠀⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-⣿⣿⣿⣿⣿⠀⢠⣶⣿⣿⣿⣿⣿⡿⠛⠳⣦⣀⣀⣴⣾⡿⠃⠀⠀⠀⠀⠀⠹⣿⣿⣿⣿⣿⣿⡿⠀⠀⠀⠀⣸⣿⣿⡇⠀⣀⣀⣀⡀⠙⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⠀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠛⠉⠉⠻⣿⡇⣸⣿⠁⢀⣶⣷⠂⠀⢈⡟⠀⠀⠀⢿⣿⣿⣿⣿⣿⣿⣿⣿⠇⠀⠀⠀⠀⠀⠀⠀⣠⣴⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⡿⠋⠀⢀⣶⣦⣤⣿⣿⣿⠁⠀⠻⠟⠁⠀⣰⡟⠀⠀⠀⠀⠘⣿⣿⣿⣿⣿⣿⣿⣿⠏⠀⠀⠀⠀⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⠀⢠⣶⣿⣿⣿⣿⣿⡿⠛⠳⣦⣀⣀⣴⣾⡿⠃⠀⠀⠀⠀⠀⠹⣿⣿⣿⣿⣿⣿⡿⠀⠀⠀⠀⣸⣿⣿⡇⠀⣀⣀⣀⡀⠙⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⠀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
 ⣿⣿⣿⣿⣿⡀⠀⠹⣿⣿⣿⣿⣿⣷⠀⠀⣿⣿⣿⣿⣿⡇⠀⠀⠀⢀⠀⠀⠀⢹⣿⣿⣿⣿⡿⠁⠀⠀⠀⣰⣿⣿⣿⡇⠀⣿⣿⣿⣿⠀⢸⣿⠛⠉⠉⠉⠉⠙⢿⣿⣿⠟⠉⠉⠉⠉⠙⢿⣿⡇⠀⣿⡿⠛⠉⢹⡿⠛⠉⠉⠉⠉⠛⢿⣿⡿⠛⠉⠉⠉⠉⠉⠉⣿⡿⠛⠉⠉⠉⠉⠙⠻⣿
 ⣿⣿⣿⣿⣿⣿⣦⡀⠈⠻⣿⣿⠟⠃⢀⣴⣿⣿⣿⣿⣿⡇⠀⠀⠀⢺⣿⣶⣶⣤⣿⣿⣿⡟⠁⠀⠀⠀⣰⣿⣿⣿⣿⡇⠀⠛⠛⠛⠋⠀⣼⣶⣶⠴⠶⠶⠶⠄⢸⣿⡇⠀⢰⣶⣶⣶⣤⣼⣿⡇⠀⠛⠀⣀⣴⣿⣶⣶⠴⠶⠶⠶⠄⠈⣿⡇⠀⣶⣶⣶⣶⠀⠀⣿⡇⠀⠴⠶⠶⠶⠄⠀⣿
 ⣿⣿⣿⣿⣿⣿⣿⣿⣦⡀⠀⠀⢀⣰⣿⣿⣿⣿⣿⣿⣿⣇⠀⠀⠀⠈⢻⣿⣿⣿⣿⣿⠟⠀⠀⠀⠀⣰⣿⣿⣿⣿⣿⡇⠀⣶⣶⣶⣶⣿⣿⠛⠉⢠⣤⣤⣤⡄⢸⣿⡇⠀⢸⣿⣿⣿⣿⣿⣿⡇⠀⣀⠀⠙⢿⣿⠛⠉⣠⣤⣤⣤⠀⠀⣿⡇⠀⣿⣿⣿⣿⠀⠀⣿⡇⠀⣀⣀⣀⣀⣤⣼⣿
@@ -21,48 +21,51 @@
 A brief overview of key terms:
 
 `<package>`
-	A package file or package name, depending on the command.
+    A package file or package name, depending on the command.
 
 `<package@version>`
-	Full package name consisting of package name and version.
+    The full package name consisting of the package name and version.
 
 `--aarch64`
-	Select the aarch64 processor architecture.
+    Select the aarch64 processor architecture.
 
 `--x86_64`
-	Select the x86_64 processor architecture.
+    Select the x86_64 processor architecture.
+
 
 (1) INFO ABOUT UTILITY
 =======================================================================================================
 
 `catpkg` is the package manager for the CATPKG package system.
 
-It is used to install, remove, verify, update and inspect installed packages.
-It also provides a package build command.
+It is used to install, remove, verify, update, and inspect installed packages.
+It also provides a command for building packages.
 
 The package format used by catpkg is `.catpackage`.
 
-The package metadata is stored according to the CATPKG metadata specification.
+Package metadata is stored according to the CATPKG metadata specification.
+
 
 Permissions:
 
 `install`
-Root privileges required.
+    Root privileges required.
 
 `remove`
-Root privileges required.
+    Root privileges required.
 
 `update`
-Root privileges required.
+    Root privileges required.
 
 `verify`
-Default user permissions.
+    Default user permissions.
 
 `database`
-Default user permissions.
+    Default user permissions.
 
 `build`
-Default user permissions.
+    Default user permissions.
+
 
 # (2) COMMANDS
 =======================================================================================================
@@ -72,56 +75,117 @@ Default user permissions.
 
 Usage:
 
-`catpkg install <package>`
+`sudo catpkg install <path/to/package>`
 
-Installs a `.catpackage` file.
+Install or update the package located at the specified path.
 
 Example:
 
-`sudo catpkg install ./catpkg-x86_64@1.0.0.catpackage`
+`sudo catpkg install ./catpkg@2.0.0-beta.catpackage`
 
-Before installation, catpkg displays information about the package
+OR
+
+Usage:
+
+`sudo catpkg install <path/to/package_1> <path/to/package_2> <path/to/package_N>`
+
+Install or update multiple packages located at the specified paths.
+
+Example:
+
+`sudo catpkg install ./filesystem@*.catpackage ./catstrap-bin@*.catpackage ./catstraplib@*.catpackage ./catpkg@*.catpackage`
+
+OR
+
+Usage:
+
+`sudo catpkg install *.catpackage`
+
+Install or update all `.catpackage` packages in the current directory.
+
+Before installation, catpkg displays information about the packages
 and asks for confirmation.
 
 The command requires root privileges.
+
 
 ## (2.2) UPDATE
 -------------------------------------------------------------------------------------------------------
 
 Usage:
 
-`catpkg update <package>`
+`sudo catpkg update <path/to/package>`
 
-Updates an already installed package using the specified `.catpackage` file.
+Update the package using the package file at the specified path.
 
 Example:
 
-`sudo catpkg update ./catpkg-x86_64@1.0.1.catpackage`
+`sudo catpkg update ./catpkg@2.0.0-beta.catpackage`
 
-The package name and version are read from `PACKAGEINFO`.
+OR
+
+Usage:
+
+`sudo catpkg update <path/to/package_1> <path/to/package_2> <path/to/package_N>`
+
+Update multiple packages using the package files at the specified paths.
+
+Example:
+
+`sudo catpkg update ./filesystem@*.catpackage ./catstrap-bin@*.catpackage ./catstraplib@*.catpackage ./catpkg@*.catpackage`
+
+OR
+
+Usage:
+
+`sudo catpkg update *.catpackage`
+
+Update all packages using the `.catpackage` files in the current directory.
+
+Before updating, catpkg displays information about the packages
+and asks for confirmation.
 
 The command requires root privileges.
+
 
 ## (2.3) REMOVE
 -------------------------------------------------------------------------------------------------------
 
 Usage:
 
-`catpkg remove <package>`
+`sudo catpkg remove <path/to/package>`
 
-Removes an installed package.
+Remove the package specified by the package file at the given path.
 
 Example:
 
-`sudo catpkg remove catpkg`
+`sudo catpkg remove ./catpkg@2.0.0-beta.catpackage`
 
-If only one installed version matches the package name,
-that version is selected automatically.
+OR
 
-If several versions are installed, catpkg asks the user
-which version should be removed.
+Usage:
+
+`sudo catpkg remove <path/to/package_1> <path/to/package_2> <path/to/package_N>`
+
+Remove multiple packages specified by the package files at the given paths.
+
+Example:
+
+`sudo catpkg remove ./filesystem@*.catpackage ./catstrap-bin@*.catpackage ./catstraplib@*.catpackage ./catpkg@*.catpackage`
+
+OR
+
+Usage:
+
+`sudo catpkg remove *.catpackage`
+
+Remove all packages specified by the `.catpackage` files in the current directory.
+
+Before removal, catpkg displays information about the packages
+and asks for confirmation.
 
 The command requires root privileges.
+
 
 ## (2.4) VERIFY
 -------------------------------------------------------------------------------------------------------
@@ -130,21 +194,22 @@ Usage:
 
 `catpkg verify <package>`
 
-Verifies the integrity of an installed package.
+Verify the integrity of an installed package.
 
 Example:
 
 `catpkg verify catpkg`
 
-If the package name matches several packages, catpkg displays
+If the package name matches multiple packages, catpkg displays
 the available matches.
 
-If several installed versions exist, catpkg asks for the full
+If multiple installed versions exist, catpkg asks for the full
 package name:
 
 `name@version`
 
-The verification process uses the package metadata and package integrity information.
+The verification process uses package metadata and package integrity information.
+
 
 ## (2.5) DATABASE
 -------------------------------------------------------------------------------------------------------
@@ -153,7 +218,7 @@ Usage:
 
 `catpkg database list`
 
-Displays information about installed packages.
+Display information about installed packages.
 
 Example:
 
@@ -162,16 +227,17 @@ Example:
 The package list contains:
 
 `Name`
-Package name.
+    Package name.
 
 `Version`
-Installed package versions.
+    Installed package version.
 
 `Description`
-Package description from `PACKAGEINFO`.
+    Package description from `PACKAGEINFO`.
 
 `Dependencies`
-Package dependencies declared in `PACKAGEINFO`.
+    Package dependencies declared in `PACKAGEINFO`.
+
 
 ## (2.6) BUILD
 -------------------------------------------------------------------------------------------------------
@@ -180,9 +246,9 @@ Usage:
 
 `catpkg build`
 
-Builds a package using the default architecture.
+Build a package using the default architecture.
 
-Architecture can be selected explicitly:
+The target architecture can be selected explicitly:
 
 `catpkg build --x86_64`
 
@@ -191,12 +257,14 @@ Architecture can be selected explicitly:
 The available architectures are:
 
 `x86_64`
-64-bit x86 architecture.
+    64-bit x86 architecture.
 
 `aarch64`
-64-bit ARM architecture.
+    64-bit ARM architecture.
 
-When no architecture option is specified, the build process uses its default configuration.
+When no architecture option is specified, the build process uses
+the default architecture configuration.
+
 
 ## (2.7) HELP
 -------------------------------------------------------------------------------------------------------
@@ -205,11 +273,12 @@ Usage:
 
 `catpkg help`
 
-Displays the catpkg command help.
+Display the catpkg command help.
 
 Example:
 
 `catpkg help`
+
 
 # (3) PACKAGE NAME
 =======================================================================================================
@@ -224,6 +293,7 @@ Example:
 
 The package name and version are taken from the `PACKAGEINFO`
 metadata stored inside the `.catpackage` file.
+
 
 # (4) PACKAGE FILE
 =======================================================================================================
@@ -252,10 +322,11 @@ The complete metadata format is documented separately in:
 
 `CATPKG_METADATA_SPECIFICATION`
 
+
 # (5) ARCHITECTURE OPTIONS
 =======================================================================================================
 
-Architecture options currently supported by the command line interface:
+Architecture options currently supported by the command-line interface:
 
 `--x86_64`
 
@@ -282,12 +353,16 @@ Examples:
 Architecture selection does not change the command itself;
 it changes the target architecture passed to the build system.
 
+
 # (6) ROOT PRIVILEGES
+=======================================================================================================
 
 The following commands require administrator privileges:
 
 `catpkg install`
+
 `catpkg update`
+
 `catpkg remove`
 
 When these commands are executed without root privileges,
@@ -298,10 +373,13 @@ Example:
 
 `sudo catpkg install ./package.catpackage`
 
+
 (X) OTHER
 =======================================================================================================
+
 Related:
-catpkg-docs installer ( catpkg-installer )
-catpkg-docs make ( catpkg-make )
-catpkg-docs catpkg ( About catpkg )
-catpkg-docs CATPKG ( CATPKG_METADATA_SPECIFICATION )
+
+    catpkg-docs installer (catpkg-installer)
+    catpkg-docs make (catpkg-make)
+    catpkg-docs catpkg (About catpkg)
+    catpkg-docs CATPKG (CATPKG_METADATA_SPECIFICATION)

@@ -45,6 +45,8 @@ int catpkg_remove(
     bool assume_yes
 )
 {
+    update_database_package_ids();
+
     (void)assume_yes;
 
     bool builder_initialized = false;
@@ -82,7 +84,8 @@ int catpkg_remove(
         CATPKG_DATABASE,
         NULL
     );
-    CATPKG_ReadSections(database_fileinfo, 5);
+    
+    CATPKG_ReadAll(database_fileinfo);
 
     if (database_fileinfo == NULL)
         goto cleanup;
@@ -350,6 +353,7 @@ int catpkg_remove(
                 package->catpkg_packageinfo_path,
                 NULL
             );
+
         CATPKG_ReadSections(package->info, 5);
 
         package->fileinfo = CATPKG_Parse(

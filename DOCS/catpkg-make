@@ -22,60 +22,133 @@ A brief overview of key terms:
 
 `%a10e`
     Processor architecture.
+
 `->`
     Then.
+
 
 (1) INFO ABOUT UTILITY
 =======================================================================================================
 
-The build master for x86_64 and aarch64 architectures, both in x86_64 systems and in aarch64 systems. 
-It is used for building:
-	1)	catpkg (Various contents)
+`catpkg-make` is a build utility for the CatPackage project.
 
-	2)	catpkg-installer-%a10e (catpkg installation master)
-	
-	3)	catpkg-make-%a10e (Updating the current version or building another architecture)
+This utility provides builds related to CatPackage and allows you to assemble
+the latest versions of catstrap, catpkg, and other components distributed
+with the project.
 
-Launch: 
-`./catpkg-make-%a10e`
+It provides predefined build configurations for creating executable catstrap
+archives, individual `.catpackage` packages, filesystem packages, and the
+catpkg-make executable itself.
 
-Permissions to run: Default.
+The target processor architecture can be selected during the build process
+where supported.
+
+At the moment, CatPackage is in beta testing. The build system and its
+internal interfaces may change between versions, and catpkg-make therefore
+cannot yet provide complete and stable documentation for all available
+build operations.
+
 
 (2) USAGE
 =======================================================================================================
 
-	To launch, use `./catpkg-make-%a10e`. You will be prompted to enter a number: “Enter a number:” 
-to select an option:
-	1)	Building the catpkg-(aarch64/x86_64)@X.X.X.catpackage
+Run `catpkg-make` and select the required build from the interactive menu:
 
-	2)	Building catpkg-installer-(aarch64/x86_64)@X.X.X 
-	( catpkg-(aarch64/x86_64)@X.X.X.catpackage build is required )
-	
-	3)	catpkg-make-(aarch64/x86_64) ( Update )
+========================================
+        CATPKG MAKE                     
+The CATPKG utility builder.                                        
+========================================           
+Welcome to the CATPKG utility builder! Choose which build you need:
+1) Building catstrap-catpkg-*-(aarch64/x86_64)
+2) Building catstrap-catpkg-lite-*-(aarch64/x86_64)
+3) Building catstrap-catpkg-net-*-(aarch64/x86_64)
+4) Building catstrap-catpkg-custom-*-(aarch64/x86_64)
+5) Building catstrap ( Empty )
+
+6) Building the catpkg-(aarch64/x86_64)@*.catpackage
+7) Building the catstraplib-(aarch64/x86_64)@*.catpackage
+8) Building the catstrap-bin-(aarch64/x86_64)@*.catpackage
+9) Building the catpkg-build-(aarch64/x86_64)@1.0.0b.catpackage
+
+10) Building the filesystem@1.0.catpackage
+11) Building the filesystem-android@1.0.catpackage
+
+12) catpkg-make-(aarch64/x86_64) ( Update )
+Enter a number: ^C
+
 
 < P.S. About options >
-1 - This option creates a package .tmp/catpkg-(aarch64/x86_64)@X.X.X.catpackage,
-with the architecture of your choice; the version is automatically taken from build-data/PACKAGEINFO.
 
-2 - This parameter creates the main binary installation 
-file catpkg with the option to select the processor architecture; 
-the package Building the catpkg-(aarch64/x86_64)@X.X.X.catpackage is used for the build.
+1 - This option creates a package:
 
-3 - Updates or creates a build master with architecture selection.
+`.tmp/catpkg-(aarch64/x86_64)@X.X.X.catpackage`
+
+The target processor architecture can be selected during the build.
+The package version is automatically obtained from:
+
+`build-data/PACKAGEINFO`
+
+The resulting `.catpackage` file can then be used by other catpkg-make
+build operations.
+
+
+2 - This option creates the main executable catpkg installation file
+with support for selecting the target processor architecture.
+
+The package produced by:
+
+`Building the catpkg-(aarch64/x86_64)@X.X.X.catpackage`
+
+is used as part of this build process.
+
+
+3 - This option updates an existing build master or creates a new one,
+with support for selecting the target processor architecture.
+
 
 -> To confirm, press “Enter”.
 
-	Regardless of the selected option, enter the number “Enter a number: ” 
-to select the available architectures for the build.
+Regardless of the selected option, enter the required number at:
+
+`Enter a number:`
+
+If the selected build supports multiple processor architectures,
+catpkg-make will then display the architectures available for that build.
+
+Select the required architecture:
+
+`aarch64`
+    64-bit ARM architecture.
+
+`x86_64`
+    64-bit x86 architecture.
+
 
 -> To confirm, press “Enter”.
 
-After that, the assembly process will continue.
+After confirmation, catpkg-make prepares the required build environment
+and starts the selected assembly process.
+
+Depending on the selected option, the build process may create a
+`.catpackage` package, an executable catstrap archive, or another
+CatPackage project component.
+
+Generated package names generally contain the package name, target
+architecture where applicable, and package version.
+
+Example:
+
+`catpkg-x86_64@*.catpackage`
+
+The exact output and intermediate files depend on the selected build
+configuration.
+
 
 (X) OTHER
 =======================================================================================================
+
 Related:
-catpkg-docs installer ( catpkg-installer )
-catpkg-docs make ( catpkg-make )
-catpkg-docs catpkg ( About catpkg )
-catpkg-docs CATPKG ( CATPKG_METADATA_SPECIFICATION )
+    catpkg-docs installer ( catpkg-installer )
+    catpkg-docs make ( catpkg-make )
+    catpkg-docs catpkg ( About catpkg )
+    catpkg-docs CATPKG ( CATPKG_METADATA_SPECIFICATION )

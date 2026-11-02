@@ -400,7 +400,7 @@ static size_t catpkg_readline_v1_packageinfo(
                 if (dep_info == NULL)                                                                   \
                     break;                                                                              \
                                                                                                         \
-                if (CATPKG_ReadSection(dep_info, 6) == (ssize_t) SIZE_MAX) {                            \
+                if (CATPKG_ReadSection(dep_info, 5) == (ssize_t) SIZE_MAX) {                            \
                     PackageInfo_Free(dep_info);                                                         \
                     break;                                                                              \
                 }                                                                                       \

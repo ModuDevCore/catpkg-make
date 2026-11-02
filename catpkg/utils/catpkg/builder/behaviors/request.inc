@@ -49,17 +49,16 @@ case PAYLOAD_EXCLUDE:
     }
 
     struct PAYLOAD_EXCLUDE_Context *payload_exclude_context = NULL;
-    
+
     if (last_payload_exclude == NULL) {
         payload_exclude_context = malloc(sizeof(*payload_exclude_context));
-        payload_exclude_context -> E_pages = NULL;
         payload_exclude_context -> E_pages_size = 0;
-
+        payload_exclude_context -> E_pages = NULL;
     }
     else {
         payload_exclude_context = last_payload_exclude->context;
     }
-    
+
     request->context = payload_exclude_context;
 
     struct header_posix_ustar hpu;
@@ -171,8 +170,7 @@ case PAYLOAD_EXCLUDE:
                 memset(
                     payload_exclude_context->E_pages + old_size,
                     0,
-                    (new_size - old_size) *
-                    sizeof(*payload_exclude_context->E_pages)
+                    (new_size - old_size) * sizeof(*payload_exclude_context->E_pages)
                 );
 
                 payload_exclude_context->E_pages_size =
@@ -262,7 +260,7 @@ case OPSEC_CREATE:
 
     CATPKG_ReadSections(
         package_info,
-        6
+        5
     );
 
     struct OPSeC_Context *new_context =
@@ -622,7 +620,7 @@ case OPSEC_CREATE:
             if (
                 CATPKG_ReadSection(
                     dep_info,
-                    6
+                    5
                 ) == (ssize_t) SIZE_MAX
             ) {
                 PackageInfo_Free(dep_info);

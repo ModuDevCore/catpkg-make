@@ -51,6 +51,7 @@ int catpkg_install(
 {
     catpkg_database_ensure();
 
+    update_database_package_ids();
     (void)assume_yes;
 
     bool builder_initialized = false;

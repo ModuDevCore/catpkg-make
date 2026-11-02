@@ -9,8 +9,6 @@ The catpkg extension for building packages .catpackage
 -
 __SHA__
 -
-__SIZE__
--
 catpkg
 -
 #prot __PROT_PAYLOAD_EXCLUDE__ CATPKG-BUILD-COMMAND

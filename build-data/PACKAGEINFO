@@ -9,8 +9,6 @@ Native and relative package manager.
 -
 __SHA__
 -
-__SIZE__
--
 catstraplib
 -
 #prot __PROT_MKDIR_SOFT__ /var/lib/catpkg

@@ -1,9 +1,9 @@
 #!/bin/sh
 
-catpkg_installer_doc_path="./DOCS/catpkg-installer"
+catstrap_cli_doc_path="./DOCS/catstrap-cli"
 catpkg_make_doc_path="./DOCS/catpkg-make"
-catpkg_doc_path="./DOCS/catpkg"
-CATPKG_METADATA_SPECIFICATION_doc_path="./DOCS/CATPKG_METADATA_SPECIFICATION"
+catpkg_cli_doc_path="./DOCS/catpkg-cli"
+CATPKG_DSL_doc_path="./DOCS/CATPKG-DSL"
 
 catpkg_console_font="./FONTS/default8x16.psf"
 catpkg_braille_font="./FONTS/brl-16.psf"
@@ -19,7 +19,6 @@ restore_font()
 	fi
 }
 
-# Use custom console fonts only in Linux TTY.
 if [ "$TERM" = "linux" ] &&
 	command -v setfont >/dev/null 2>&1 &&
 	[ -f "$catpkg_console_font" ] &&
@@ -38,7 +37,6 @@ if [ "$TERM" = "linux" ] &&
 	fi
 fi
 
-
 show_help()
 {
 	cat "./DOCS/SRC/TEXTBANER"
@@ -46,38 +44,78 @@ show_help()
 	echo "catpkg-docs: Documentation viewer"
 	echo
 	echo "Available documentation:"
-	echo "catpkg-docs installer | catpkg-installer"
-	echo "catpkg-docs make      | catpkg-make"
-	echo "catpkg-docs catpkg    | About catpkg"
-	echo "catpkg-docs CATPKG    | CATPKG_METADATA_SPECIFICATION"
+	echo "  catpkg-docs catstrap"
+	echo "  catpkg-docs make"
+	echo "  catpkg-docs catpkg"
+	echo "  catpkg-docs CATPKG"
 	echo
 	echo "Available commands:"
-	echo "  exit"
 	echo "  help"
+	echo "  exit"
 	echo
 }
 
+show_doc()
+{
+	case "$1" in
+		catstrap)
+			less "$catstrap_cli_doc_path"
+			;;
+
+		make)
+			less "$catpkg_make_doc_path"
+			;;
+
+		catpkg)
+			less "$catpkg_cli_doc_path"
+			;;
+
+		CATPKG)
+			less "$CATPKG_DSL_doc_path"
+			;;
+
+		*)
+			return 1
+			;;
+	esac
+}
+
+show_interactive_doc()
+{
+	clear
+
+	{
+		echo "PRESS: 'q' FOR EXIT AND CHOOSE OTHER DOC."
+		echo
+
+		case "$1" in
+			catstrap)
+				cat "$catstrap_cli_doc_path"
+				;;
+
+			make)
+				cat "$catpkg_make_doc_path"
+				;;
+
+			catpkg)
+				cat "$catpkg_cli_doc_path"
+				;;
+
+			CATPKG)
+				cat "$CATPKG_DSL_doc_path"
+				;;
+		esac
+	} | less
+}
 
 case "$1" in
 
-	--help)
+	--help|-h|help)
 		show_help
 		;;
 
-	catpkg-installer|installer)
-		less "$catpkg_installer_doc_path"
-		;;
-
-	catpkg-make|make)
-		less "$catpkg_make_doc_path"
-		;;
-
-	catpkg)
-		less "$catpkg_doc_path"
-		;;
-
-	CATPKG|CATPKG_METADATA|CATPKG_METADATA_SPECIFICATION)
-		less "$CATPKG_METADATA_SPECIFICATION_doc_path"
+	catstrap|make|catpkg|CATPKG)
+		show_doc "$1"
 		;;
 
 	"")
@@ -85,50 +123,18 @@ case "$1" in
 
 		while true; do
 			printf "\ncatpkg-docs: "
-			read doc
+			IFS= read -r doc
 
 			case "$doc" in
-
-				installer|catpkg-installer)
-					clear
-					{
-						echo "PRESS: 'q' FOR EXIT AND CHOOSE OTHER DOC."
-						echo
-						cat "$catpkg_installer_doc_path"
-					} | less
-					;;
-
-				make|catpkg-make)
-					clear
-					{
-						echo "PRESS: 'q' FOR EXIT AND CHOOSE OTHER DOC."
-						echo
-						cat "$catpkg_make_doc_path"
-					} | less
-					;;
-
-				catpkg)
-					clear
-					{
-						echo "PRESS: 'q' FOR EXIT AND CHOOSE OTHER DOC."
-						echo
-						cat "$catpkg_doc_path"
-					} | less
-					;;
-
-				CATPKG|CATPKG_METADATA|CATPKG_METADATA_SPECIFICATION)
-					clear
-					{
-						echo "PRESS: 'q' FOR EXIT AND CHOOSE OTHER DOC."
-						echo
-						cat "$CATPKG_METADATA_SPECIFICATION_doc_path"
-					} | less
+				catstrap|make|catpkg|CATPKG)
+					show_interactive_doc "$doc"
 					;;
 
 				help)
 					show_help
 					;;
-				exit)
+
+				exit|quit)
 					exit 0
 					;;
 
@@ -136,15 +142,16 @@ case "$1" in
 					;;
 
 				*)
-					echo "catpkg-docs: Unknown documentation: $doc"
+					echo "catpkg-docs: Unknown documentation or command: $doc"
 					;;
 			esac
 		done
 		;;
 
 	*)
+		echo "catpkg-docs: Unknown documentation or command: $1"
+		echo
 		show_help
-		echo "catpkg-docs: Unknown documentation: $1"
 		exit 1
 		;;
 

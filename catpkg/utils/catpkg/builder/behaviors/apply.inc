@@ -2580,7 +2580,7 @@ case CATPKG_MERGE_DATABASE:
                 NULL
             );
 
-        CATPKG_ReadSections(package_info, 6);
+        CATPKG_ReadSections(package_info, 5);
 
         struct PackageInfo *package_fileinfo =
             CATPKG_Parse(

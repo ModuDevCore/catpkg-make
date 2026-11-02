@@ -30,6 +30,8 @@ int catpkg_update(
     const size_t paths_count
 )
 {
+    update_database_package_ids();
+    
     bool builder_initialized = false;
 
     struct PackageInfo *database_fileinfo = NULL;

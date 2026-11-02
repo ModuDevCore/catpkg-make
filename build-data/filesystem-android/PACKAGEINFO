@@ -9,8 +9,6 @@ Filesystem android based.
 -
 __SHA__
 -
-__SIZE__
--
 -
 #prot __PROT_MKDIR__ /dev
 #prot __PROT_EXCEPTION__ EEXIST:__PROT_FILEINFO_DECLAR_EXIST_NOT_PACKAGE__:/dev

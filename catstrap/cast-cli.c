@@ -263,7 +263,6 @@ int main(int argc, char *argv[])
         close(fd);
     }
     else if (strcmp(argv[1], "--install") == 0 || strcmp(argv[1], "--update") == 0) {
-        update_database_package_ids();
 
         int fd = open(argv[0], O_RDONLY);
         if (fd == -1) {
@@ -693,8 +692,6 @@ int main(int argc, char *argv[])
         return result;
     }
     else if(strcmp(argv[1], "--remove") == 0) {
-        update_database_package_ids();
-
         setenv("CATSTRAP-BIN", argv[0], 1);
         return catpkg_remove(
             (const char **) argv + 2,
@@ -727,7 +724,7 @@ int main(int argc, char *argv[])
             );
 
             struct PackageInfo *info = catpkg_find_package_info(package_fullname);
-            CATPKG_ReadSections(info, 6);
+            CATPKG_ReadSections(info, 5);
             const struct PackageField *description_field = PackageInfo_Find(info, "description");
             const struct PackageField *dependency_field = PackageInfo_Find(info, "dependency");
 
