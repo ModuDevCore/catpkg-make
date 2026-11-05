@@ -5,4 +5,9 @@ case "$1" in
         shift
         exec tar "$@"
         ;;
+
+    catpkg-command)
+        shift
+        exec catpkg-command "$@"
+        ;;
 esac

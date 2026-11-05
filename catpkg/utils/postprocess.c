@@ -92,6 +92,93 @@ ssize_t postproccess_format_file_macros(
     size_t macros_size,
     size_t min_output
 ) {
+    size_t merged_macros_size = macros_size;
+
+    struct MacroDeclaration *merged_macros =
+        malloc(merged_macros_size * sizeof(*merged_macros));
+
+    if (merged_macros == NULL && merged_macros_size != 0)
+        return -1;
+
+    if (macros_size != 0)
+        memcpy(merged_macros, macros, macros_size * sizeof(*merged_macros));
+
+    const char *env = getenv("POSTPROC_CUSTOM_MACRO");
+    char *buffer_env = NULL;
+
+    if (env != NULL && *env != '\0') {
+        buffer_env = strdup(env);
+
+        if (buffer_env == NULL) {
+            free(merged_macros);
+            return -1;
+        }
+
+        char *cursor = buffer_env;
+
+        while (*cursor != '\0') {
+            char *end = strchr(cursor, ':');
+
+            if (end != NULL)
+                *end = '\0';
+
+            char *separator = strchr(cursor, '=');
+
+            if (separator != NULL && separator != cursor) {
+                *separator = '\0';
+
+                char *name = strdup(cursor);
+                char *value = strdup(separator + 1);
+
+                if (name == NULL || value == NULL) {
+                    free(name);
+                    free(value);
+                    goto parse_error;
+                }
+
+                struct MacroDeclaration *tmp = realloc(
+                    merged_macros,
+                    (merged_macros_size + 1) * sizeof(*merged_macros)
+                );
+
+                if (tmp == NULL) {
+                    free(name);
+                    free(value);
+                    goto parse_error;
+                }
+
+                merged_macros = tmp;
+
+                merged_macros[merged_macros_size++] = (struct MacroDeclaration) {
+                    .name = name,
+                    .value = (intptr_t)value,
+                    .is_string = true
+                };
+            }
+
+            if (end == NULL)
+                break;
+
+            cursor = end + 1;
+        }
+
+        free(buffer_env);
+    }
+
+    goto parse_done;
+
+    parse_error:
+    for (size_t i = macros_size; i < merged_macros_size; i++) {
+        free(merged_macros[i].name);
+        free((char *)merged_macros[i].value);
+    }
+
+    free(merged_macros);
+    free(buffer_env);
+    return -1;
+
+    parse_done:
+
     int current;
     int read_result;
 
@@ -495,17 +582,17 @@ ssize_t postproccess_format_file_macros(
 
         for (
             size_t i = 0;
-            i < macros_size;
+            i < merged_macros_size;
             i++
         ) {
             if (
                 strcmp(
-                    macros[i].name,
+                    merged_macros[i].name,
                     name
                 ) == 0
             ) {
                 candidate =
-                    &macros[i];
+                    &merged_macros[i];
 
                 break;
             }

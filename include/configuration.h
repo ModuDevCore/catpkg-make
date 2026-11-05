@@ -67,4 +67,5 @@
     "Delete the current packages? [Y\\n]: "
 
 #define ALLOW_REMOVE ALLOW_REMOVE_INFO ALLOW_REMOVE_ASK
+
 #endif

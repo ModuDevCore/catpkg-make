@@ -201,14 +201,3 @@ to the console.
 Example:
 
 `sudo catstrap-catpkg-* --packages`
-
-
-(X) OTHER
-=======================================================================================================
-
-Related:
-
-    catpkg-docs installer (catpkg-installer)
-    catpkg-docs make (catpkg-make)
-    catpkg-docs catpkg (About catpkg)
-    catpkg-docs CATPKG (CATPKG_METADATA_SPECIFICATION)

@@ -5,6 +5,7 @@
 #include <sys/wait.h>
 #include <dirent.h>
 #include <libgen.h>
+#include <errno.h>  
 
 #include "configuration.h"
 #include "install.h"
@@ -386,12 +387,11 @@ int catpkg_cli(
 
             return 0;
 
-        case COMMAND_HELP: 
+        case COMMAND_HELP:
         {
             printf("%s", CATPKG_HELP);
 
-            DIR *dir =
-                opendir(CATPKG_COMMANDS_DIR_PATH);
+            DIR *dir = opendir(CATPKG_COMMANDS_DIR_PATH);
 
             if (dir != NULL) {
                 struct dirent *entry;
@@ -404,45 +404,129 @@ int catpkg_cli(
                         continue;
                     }
 
+                    char *command_path = make_catpkg_path(
+                        CATPKG_COMMANDS_DIR_PATH "/%s",
+                        entry->d_name
+                    );
+
+                    if (command_path == NULL) {
+                        continue;
+                    }
+
+                    char *command_realpath = realpath(command_path, NULL);
+                    free(command_path);
+
+                    if (command_realpath == NULL) {
+                        continue;
+                    }
+
+                    char *command_realpath_dir = strdup(command_realpath);
+
+                    if (command_realpath_dir == NULL) {
+                        free(command_realpath);
+                        continue;
+                    }
+
+                    char *commands_data_dir = make_catpkg_path(
+                        "%s/DATA",
+                        dirname(command_realpath_dir)
+                    );
+
+                    free(command_realpath_dir);
+
+                    if (commands_data_dir == NULL) {
+                        free(command_realpath);
+                        continue;
+                    }
+
+                    const char *catstrap = getenv("CATSTRAP-BIN");
+
+                    if (catstrap == NULL || *catstrap == '\0') {
+                        fprintf(
+                            stderr,
+                            "catpkg: help: CATSTRAP-BIN is not set\n"
+                        );
+
+                        free(command_realpath);
+                        free(commands_data_dir);
+                        closedir(dir);
+                        return 1;
+                    }
+
                     int fd4[2];
                     int fd5[2];
 
-                    pipe(fd4);
-                    pipe(fd5);
+                    if (pipe(fd4) == -1) {
+                        perror("pipe");
+                        free(command_realpath);
+                        free(commands_data_dir);
+                        closedir(dir);
+                        return 1;
+                    }
+
+                    if (pipe(fd5) == -1) {
+                        perror("pipe");
+                        close(fd4[0]);
+                        close(fd4[1]);
+                        free(command_realpath);
+                        free(commands_data_dir);
+                        closedir(dir);
+                        return 1;
+                    }
 
                     pid_t pid = fork();
 
                     if (pid == -1) {
                         perror("fork");
 
+                        close(fd4[0]);
+                        close(fd4[1]);
+                        close(fd5[0]);
+                        close(fd5[1]);
+
+                        free(command_realpath);
+                        free(commands_data_dir);
+                        closedir(dir);
                         return 1;
                     }
 
                     if (pid == 0) {
-                        dup2(fd4[1], 4);
-                        dup2(fd5[1], 5);
+                        close(fd4[0]);
+                        close(fd5[0]);
 
-                        char *command_path =
-                            make_catpkg_path(
-                                CATPKG_COMMANDS_DIR_PATH "/%s",
-                                entry->d_name
-                            );
+                        int declaration_fd = dup(fd4[1]);
+                        int description_fd = dup(fd5[1]);
 
-                        char *command_realpath = realpath(command_path, NULL);
+                        if (declaration_fd == -1 || description_fd == -1) {
+                            _exit(127);
+                        }
 
-                        char *command_realpath_dir = strdup(command_realpath);
+                        if (
+                            dup2(declaration_fd, 4) == -1 ||
+                            dup2(description_fd, 5) == -1
+                        ) {
+                            _exit(127);
+                        }
 
-                        dirname(command_realpath_dir);
+                        if (declaration_fd != 4 && declaration_fd != 5) {
+                            close(declaration_fd);
+                        }
 
-                        char *commands_data_dir =
-                            make_catpkg_path(
-                                "%s/%s",
-                                command_realpath_dir,
-                                "DATA"
-                            );
+                        if (description_fd != 4 && description_fd != 5) {
+                            close(description_fd);
+                        }
+
+                        if (fd4[1] != 4 && fd4[1] != 5) {
+                            close(fd4[1]);
+                        }
+
+                        if (fd5[1] != 4 && fd5[1] != 5) {
+                            close(fd5[1]);
+                        }
 
                         execl(
-                            "/usr/bin/catpkg-command",
+                            catstrap,
+                            catstrap,
                             "catpkg-command",
                             command_realpath,
                             "--commands_data_dir",
@@ -452,60 +536,103 @@ int catpkg_cli(
                             (char *)NULL
                         );
 
-                        free(command_path);
-                        free(commands_data_dir);
-                        free(command_realpath);
-
                         perror("execl");
                         _exit(127);
-                    }
-    
-                    int status;
-
-                    if (waitpid(pid, &status, 0) == -1) {
-                        perror("waitpid");
-                        
-                        close(fd4[1]);
-                        close(fd5[1]);
-
-                        return 1;
                     }
 
                     close(fd4[1]);
                     close(fd5[1]);
 
-                    char command_declaration[4096];
-                    char command_description[4096];
+                    free(command_realpath);
+                    free(commands_data_dir);
 
-                    if(read(fd4[0], command_declaration, sizeof(command_declaration)) < 0) {
-                        fprintf(
-                            stderr,
-                            "Error: failed to read name.\n"
-                        );
+                    char command_declaration[4096] = {0};
+                    char command_description[4096] = {0};
 
-                        close(fd4[0]);
-                        close(fd5[0]);
-                        
-                        return 1;
+                    size_t declaration_size = 0;
+                    size_t description_size = 0;
+
+                    int read_error = 0;
+
+                    for (int i = 0; i < 2; i++) {
+                        int fd = i == 0 ? fd4[0] : fd5[0];
+
+                        char *buffer = i == 0
+                            ? command_declaration
+                            : command_description;
+
+                        size_t *size = i == 0
+                            ? &declaration_size
+                            : &description_size;
+
+                        while (1) {
+                            char chunk[1024];
+
+                            ssize_t n = read(fd, chunk, sizeof(chunk));
+
+                            if (n == 0) {
+                                break;
+                            }
+
+                            if (n < 0) {
+                                if (errno == EINTR) {
+                                    continue;
+                                }
+
+                                perror("read");
+                                read_error = 1;
+                                break;
+                            }
+
+                            size_t available = 4095 - *size;
+
+                            size_t copy_size = (size_t)n < available
+                                ? (size_t)n
+                                : available;
+
+                            memcpy(buffer + *size, chunk, copy_size);
+
+                            *size += copy_size;
+                            buffer[*size] = '\0';
+                        }
+
+                        close(fd);
+
+                        if (read_error) {
+                            break;
+                        }
                     }
 
-                    close(fd4[0]);
+                    if (read_error) {
+                        if (fd4[0] != -1) {
+                            close(fd4[0]);
+                        }
 
-                    if(read(fd5[0], command_description, sizeof(command_description)) < 0) {
+                        if (fd5[0] != -1) {
+                            close(fd5[0]);
+                        }
+                    }
+
+                    int status = 0;
+                    pid_t result;
+
+                    do {
+                        result = waitpid(pid, &status, 0);
+                    } while (result == -1 && errno == EINTR);
+
+                    if (
+                        read_error ||
+                        result == -1 ||
+                        !WIFEXITED(status) ||
+                        WEXITSTATUS(status) != 0
+                    ) {
                         fprintf(
                             stderr,
-                            "Error: failed to read name.\n"
+                            "catpkg: help: failed to load command metadata\n"
                         );
-                        close(fd5[0]);
-                        
-                        return 1;
-                    }             
 
-                    close(fd5[0]);
-
-                    /*
-                     * Metadata is ready.
-                     */
+                        continue;
+                    }
 
                     printf(
                         "  %-22s %s\n",
@@ -528,8 +655,6 @@ int catpkg_cli(
                     builtin_commands[i].description
                 );
             }
-
-
 
             return 0;
         }
@@ -586,20 +711,26 @@ int catpkg_cli(
                         ? (size_t)(argc - 2)
                         : 0;
 
-                /*
-                 * catpkg-command
-                 * command_realpath
-                 * --commands_data_dir
-                 * commands_data_dir
-                 * --execute
-                 * 1
-                 * [user args...]
-                 * NULL
-                 */
+                const char *catstrap =
+                    getenv("CATSTRAP-BIN");
+
+                if (catstrap == NULL) {
+                    fprintf(
+                        stderr,
+                        "catpkg: CATSTRAP-BIN is not set\n"
+                    );
+
+                    free(command_path);
+                    free(command_realpath);
+                    free(command_realpath_dir);
+                    free(commands_data_dir);
+                    _exit(1);
+                }
+
                 char **catpkg_command_argv =
                     malloc(
                         (
-                            6 +
+                            7 +
                             command_argc +
                             1
                         ) * sizeof(*catpkg_command_argv)
@@ -614,6 +745,9 @@ int catpkg_cli(
                 }
 
                 size_t i = 0;
+
+                catpkg_command_argv[i++] =
+                    (char *)catstrap;
 
                 catpkg_command_argv[i++] =
                     "catpkg-command";
@@ -639,7 +773,7 @@ int catpkg_cli(
                 catpkg_command_argv[i] = NULL;
 
                 execv(
-                    "/usr/bin/catpkg-command",
+                    catstrap,
                     catpkg_command_argv
                 );
 

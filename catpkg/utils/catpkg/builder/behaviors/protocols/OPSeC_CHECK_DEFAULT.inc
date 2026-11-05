@@ -354,6 +354,7 @@ while (info_field != NULL) {
     if (info_field != NULL)
         info_field = info_field->next_field;
 }
+
 for (int phase = OPSEC_VALIDATION; phase <= OPSEC_RESOLVE; phase++) {
     size_t index;
 

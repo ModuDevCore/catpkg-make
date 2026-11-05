@@ -1,7 +1,7 @@
 CATPKG 1.0
 catstrap-bin
 -
-2.0.0-beta
+__BUILD_VERSION__
 -
 __ARCHITECTURE__
 -

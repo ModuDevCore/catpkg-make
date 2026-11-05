@@ -762,7 +762,6 @@ int catpkg_build(char *a10e)
         0644
     );
 
-
     if (postproccess_format_file_macros(
             input_fd,
             output_fd,

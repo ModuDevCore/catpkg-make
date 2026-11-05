@@ -1,7 +1,7 @@
 CATPKG 1.0
 catpkg
 -
-2.0.0-beta
+__BUILD_VERSION__
 -
 __ARCHITECTURE__
 -
@@ -16,5 +16,5 @@ catstraplib
 #prot __PROT_MKDIR_SOFT__ /var/lib/catpkg/packages
 #prot __PROT_MKDIR_SOFT__ /var/cache/catpkg/packages
 
-#prot __PROT_SYMLINK__ /usr/lib/catpkg/catstraplib.so.2.0.0b:/usr/lib/catstraplib.so.0
+#prot __PROT_SYMLINK__ /usr/lib/catpkg/catstraplib.so.__BUILD_VERSION__:/usr/lib/catstraplib.so.0
 #prot __PROT_EXCEPTION__ EEXIST:0

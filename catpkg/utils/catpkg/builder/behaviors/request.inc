@@ -260,7 +260,7 @@ case OPSEC_CREATE:
 
     CATPKG_ReadSections(
         package_info,
-        5
+        6
     );
 
     struct OPSeC_Context *new_context =
@@ -482,7 +482,7 @@ case OPSEC_CREATE:
             first_dependency_field;
 
         while (dep_field != NULL) {
-            if (dep_field->section != 6)
+            if (dep_field->section != 5)
                 break;
 
             if (dep_field->value != NULL) {
@@ -1464,8 +1464,21 @@ case CTPG_MKCMD:
             command_memfd
         );
 
+        const char *catstrap =
+            getenv("CATSTRAP-BIN");
+
+        if (catstrap == NULL) {
+            fprintf(
+                stderr,
+                "catpkg: cache: CATSTRAP-BIN is not set\n"
+            );
+
+            _exit(1);
+        }
+
         execl(
-            "/usr/bin/catpkg-command",
+            catstrap,
+            catstrap,
             "catpkg-command",
             path,
 
@@ -1483,6 +1496,8 @@ case CTPG_MKCMD:
 
             (char *)NULL
         );
+
+        printf("%s\n", path);
 
         _exit(127);
     }
@@ -1565,6 +1580,7 @@ case CTPG_MKCMD:
     if (command_symlink_path == NULL)
         return 1;
 
+    printf("%s\n", command_symlink_path);
     request->context =
         strdup(
             command_symlink_path

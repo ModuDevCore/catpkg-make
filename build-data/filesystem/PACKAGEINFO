@@ -1,7 +1,7 @@
 CATPKG 1.0
 filesystem
 -
-1.0
+__BUILD_VERSION__
 -
 x86_64
 -

@@ -1,7 +1,7 @@
-CATPKG 1.0
+xCATPKG 1.0
 catpkg-build
 -
-1.0.0-beta
+__BUILD_VERSION__
 -
 __ARCHITECTURE__
 -

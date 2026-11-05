@@ -1,7 +1,7 @@
 CATPKG 1.0
 filesystem-android
 -
-1.0
+__BUILD_VERSION__
 -
 x86_64 | aarch64
 -

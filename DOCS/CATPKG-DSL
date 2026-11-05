@@ -477,14 +477,3 @@ CATPKG 1.1
 `
 CATPKG 2.0
 `
-
-
-(X) OTHER
-=======================================================================================================
-
-Related:
-
-    catpkg-docs installer (catpkg-installer)
-    catpkg-docs make (catpkg-make)
-    catpkg-docs catpkg (About catpkg)
-    catpkg-docs CATPKG (CATPKG DSL)

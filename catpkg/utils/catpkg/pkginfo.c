@@ -1256,7 +1256,7 @@ ssize_t CATPKG_ReadSections(
      * Read remaining PackageInfo.
      */
 
-    while (current_section - offset_section <= sections_lim) {
+    while (current_section - offset_section < sections_lim) {
         long field_bytepos =
             reader->bytepos;
 

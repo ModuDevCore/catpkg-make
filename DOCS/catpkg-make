@@ -142,13 +142,3 @@ Example:
 
 The exact output and intermediate files depend on the selected build
 configuration.
-
-
-(X) OTHER
-=======================================================================================================
-
-Related:
-    catpkg-docs installer ( catpkg-installer )
-    catpkg-docs make ( catpkg-make )
-    catpkg-docs catpkg ( About catpkg )
-    catpkg-docs CATPKG ( CATPKG_METADATA_SPECIFICATION )

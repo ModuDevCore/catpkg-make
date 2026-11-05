@@ -49,9 +49,10 @@ int catpkg_install(
     bool assume_yes
 )
 {
+    update_database_package_ids();
+
     catpkg_database_ensure();
 
-    update_database_package_ids();
     (void)assume_yes;
 
     bool builder_initialized = false;
@@ -178,12 +179,6 @@ int catpkg_install(
                 "/.catpkg/commands",
                 name_field->value
             );
-
-        #define __PACKAGEINFO__ package->info
-        #define __PACKAGE_COMMANDS_PATH__ package->package_commands_path
-        #include "../common/INSTALL_POSTPROCESS_PACKAGEINFO.inc"
-        #undef __PACKAGEINFO__
-        #undef __PACKAGE_COMMANDS_PATH__
 
         if (package->info == NULL)
             goto cleanup;

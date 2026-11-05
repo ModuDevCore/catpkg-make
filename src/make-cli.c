@@ -1,11 +1,13 @@
+#define _XOPEN_SOURCE 700
+
 #include "install.h"
 #include "remove.h"
 #include "build.h"
 #include "database.h"
 #include "utils/fs.h"
 #include "catpkg/pkginfo.h"
-
 #include "../catstrap/cast/include/cast-format.h"
+#include "../MAKE-CLI_CONFIG.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -13,88 +15,23 @@
 #include <string.h>
 #include <stddef.h>
 #include <dirent.h>
-
 #include <unistd.h>
 #include <limits.h>
 #include <sys/stat.h>
 #include <sys/wait.h>
-
 #include <stdint.h>
-
 #include <fcntl.h>
 #include <ftw.h>
-
 #include <poll.h>
 
-// Manual build of catpkg-make-x86_64
-// gcc -std=c23 -D_XOPEN_SOURCE=700 -D_DEFAULT_SOURCE -Wextra -Wpedantic -Iinclude -c bootstrap/catstrap.c -o extra/x86_64/catstrap.o
-// gcc -std=c23 -D_XOPEN_SOURCE=700 -D_DEFAULT_SOURCE -Wextra -Wpedantic -Iinclude catpkg-build/build.c src/make-cli.c "extra/x86_64/catstrap.o" -static -o "catpkg-make-x86_64"
-
-#define __CATPKG_BUILD_BUILDER_SUFIX__ "1.0.0b"
-#define __CATPKG_BUILDER_SUFIX__ "2.0.0b"
-
-#define __CATSTRAP_CATPKG_BUILDER_SUFIX__ __CATPKG_BUILDER_SUFIX__
-#define __CATSTRAP_FILESYSTEM_SUFIX__ "1.0"
-
-#define __BUILDING_CATSTRAP_CATPKG__ \
-    "Building catstrap-catpkg-" __CATSTRAP_CATPKG_BUILDER_SUFIX__ "-(aarch64/x86_64)"
-
-#define __BUILDING_CATSTRAP_CATPKG_LITE__ \
-    "Building catstrap-catpkg-lite-" __CATSTRAP_CATPKG_BUILDER_SUFIX__ "-(aarch64/x86_64)"
-
-#define __BUILDING_CATSTRAP_CATPKG_NET__ \
-    "Building catstrap-catpkg-net-" __CATSTRAP_CATPKG_BUILDER_SUFIX__ "-(aarch64/x86_64)"
-
-#define __BUILDING_CATSTRAP_CATPKG_CUSTOM__ \
-    "Building catstrap-catpkg-custom-" __CATSTRAP_CATPKG_BUILDER_SUFIX__ "-(aarch64/x86_64)"
-
-#define __BUILDING_CATSTRAP_EMPTY__ \
-    "Building catstrap ( Empty )"
-
-#define __BUILDING_CATPKG_CATPACKAGE__ \
-    "Building the catpkg-(aarch64/x86_64)@" __CATPKG_BUILDER_SUFIX__ ".catpackage"
-
-#define __BUILDING_CATSTRAPLIB_CATPACKAGE__ \
-    "Building the catstraplib-(aarch64/x86_64)@" __CATPKG_BUILDER_SUFIX__ ".catpackage"
-
-#define __BUILDING_CATSTRAP_BIN_CATPACKAGE__ \
-    "Building the catstrap-bin-(aarch64/x86_64)@" __CATPKG_BUILDER_SUFIX__ ".catpackage"
-
-#define __BUILDING_CATPKG_BUILD_CATPACKAGE__ \
-    "Building the catpkg-build-(aarch64/x86_64)@" __CATPKG_BUILD_BUILDER_SUFIX__ ".catpackage"
-
-#define __BUILDING_FILESYSTEM_CATPACKAGE__ \
-    "Building the filesystem@" __CATSTRAP_FILESYSTEM_SUFIX__ ".catpackage"
-
-#define __BUILDING_FILESYSTEM_ANDROID_CATPACKAGE__ \
-    "Building the filesystem-android@" __CATSTRAP_FILESYSTEM_SUFIX__ ".catpackage"
-
-#define __BUILDING_CATPKG_MAKE__ \
-    "catpkg-make-(aarch64/x86_64) ( Update )"
 
 
-#define GREETING \
-    "Welcome to the CATPKG utility builder! Choose which build you need:\n" \
-    "1) " __BUILDING_CATSTRAP_CATPKG__ "\n" \
-    "2) " __BUILDING_CATSTRAP_CATPKG_LITE__ "\n" \
-    "3) " __BUILDING_CATSTRAP_CATPKG_NET__ "\n" \
-    "4) " __BUILDING_CATSTRAP_CATPKG_CUSTOM__ "\n" \
-    "5) " __BUILDING_CATSTRAP_EMPTY__ "\n\n" \
-    "6) " __BUILDING_CATPKG_CATPACKAGE__ "\n" \
-    "7) " __BUILDING_CATSTRAPLIB_CATPACKAGE__ "\n" \
-    "8) " __BUILDING_CATSTRAP_BIN_CATPACKAGE__ "\n" \
-    "9) " __BUILDING_CATPKG_BUILD_CATPACKAGE__ "\n\n" \
-    "10) " __BUILDING_FILESYSTEM_CATPACKAGE__ "\n" \
-    "11) " __BUILDING_FILESYSTEM_ANDROID_CATPACKAGE__ "\n\n" \
-    "12) " __BUILDING_CATPKG_MAKE__ "\n"
-
-#define CHOOSE_A10E \
-    "Select the processor architecture:\n" \
-    "1) x86_64\n" \
-    "2) aarch64\n"
-
-#define GCC_AARCH64 "aarch64-linux-gnu-gcc"
-#define GCC_X86_64  "gcc"
+enum BuildOption {
+    NONE,
+#define X(option, description) option,
+    BUILD_OPTIONS(X)
+#undef X
+};
 
 static int remove_entry(
     const char *path,
@@ -109,22 +46,6 @@ static int remove_entry(
 
     return remove(path);
 }
-
-enum BuildOption {
-    NONE,
-    CATSTRAP_CATPKG,
-    CATSTRAP_CATPKG_LITE,
-    CATSTRAP_CATPKG_NET,
-    CATSTRAP_CATPKG_CUSTOM,
-    CATSTRAP_EMPTY,
-    CATPKG_CATPACKAGE,
-    CATSTRAPLIB_CATPACKAGE,
-    CATSTRAP_BIN_CATPACKAGE,
-    CATPKG_BUILD_CATPACKAGE,
-    FILESYSTEM_CATPACKAGE,
-    FILESYSTEM_ANDROID_CATPACKAGE,
-    CATPKG_MAKE
-};
 
 int remove_tmp_directory(void)
 {
@@ -376,691 +297,216 @@ int bootstrap_update()
     return 0;
 }
 
-int main(int argc, char *argv[])
+static int run_script(const char *script)
 {
-    printf(
-        "========================================\n"
-    );
-
-    printf(
-        "        CATPKG MAKE\n"
-    );
-    printf(
-        "The CATPKG utility builder.\n"
-    );
-
-    printf(
-        "========================================\n"
-    );
-
-    printf(GREETING);
-
-    printf("Enter a number: ");
-
-    char buf[3] = {0};
-
-    buf[0] = getchar();
-
-    int c = getchar();
-
-    if (c != '\n') {
-        buf[1] = (char)c;
-
-        while (getchar() != '\n')
-            ;
+    fflush(NULL);
+    pid_t pid = fork();
+    if (pid < 0) {
+        perror("fork");
+        return 1;
     }
+    if (pid == 0) {
+        execl("/bin/sh", "sh", "-c", script, (char *)NULL);
+        perror("execl");
+        _exit(127);
+    }
+    int status;
+    do {
+        if (waitpid(pid, &status, 0) >= 0)
+            break;
+        if (errno != EINTR) {
+            perror("waitpid");
+            return 1;
+        }
+    } while (1);
+    if (!WIFEXITED(status) || WEXITSTATUS(status) != 0) {
+        fprintf(stderr, "Build script failed.\n");
+        return 1;
+    }
+    return 0;
+}
 
-    int code = atoi(buf);
+static int read_choice(void)
+{
+    char input[64];
+    if (!fgets(input, sizeof(input), stdin))
+        return -1;
+    char *end;
+    errno = 0;
+    long value = strtol(input, &end, 10);
+    if (errno || end == input || (*end != '\n' && *end != '\0') || value < 1 || value > 1000)
+        return -1;
+    return (int)value;
+}
 
-    /*
-     * Remove leftovers from a previous installer run.
-     */
-    if (remove_tmp_directory() != 0) {
+static int prepare_arch(char **arch)
+{
+    printf("Select the processor architecture:\n1) x86_64\n2) aarch64\nEnter a number: ");
+    fflush(stdout);
+    int selected = read_choice();
+    if (selected == 1){
+        *arch = "x86_64";
+        setenv("a10e", "x86_64", 1);
+        setenv("compiler", GCC_X86_64, 1);
+    }
+    else if (selected == 2) {
+        *arch = "aarch64";
+        setenv("a10e", "aarch64", 1);
+        setenv("compiler", GCC_AARCH64, 1);
+    }
+    else {
+        fprintf(stderr, "Invalid architecture.\n");
+        return 1;
+    }
+    return 0;
+}
 
-        fprintf(
-            stderr,
-            "[FATAL] Failed to remove old temporary directory.\n"
-        );
+int main(void)
+{
 
+    fputs(MAKE_CLI_WELCOME_TEXT, stdout);
+#define X(option, description) printf("%d) %s\n", option, description);
+    BUILD_OPTIONS(X)
+#undef X
+    printf("\nEnter a number: ");
+    fflush(stdout);
+    int code = read_choice();
+
+    #define X(option, env_name, env_value) \
+        if(code == option) \
+            setenv(env_name, env_value, 1);
+        BUILD_ENV(X)
+    #undef X
+
+    int valid = 0;
+#define X(option, description) if (code == option) valid = 1;
+    BUILD_OPTIONS(X)
+#undef X
+    if (!valid) {
+        fprintf(stderr, "Unknown option.\n");
         return 1;
     }
 
-    // TMP struct
-    switch (code) {
-        case FILESYSTEM_CATPACKAGE:
-        case FILESYSTEM_ANDROID_CATPACKAGE:
-        case CATPKG_BUILD_CATPACKAGE:
-        case CATSTRAP_CATPKG:
-        case CATSTRAP_CATPKG_LITE:
-        case CATSTRAP_CATPKG_NET:
-        case CATPKG_CATPACKAGE:
-        case CATSTRAPLIB_CATPACKAGE:
-        case CATSTRAP_BIN_CATPACKAGE:
-            if (mkdir(".tmp", 0755) != 0 && errno != EEXIST) {
-                perror("mkdir");
-                return 1;
-            }
-            switch(code) {
-                case CATPKG_BUILD_CATPACKAGE:
-                    if (mkdir(".tmp/extra", 0755) != 0 && errno != EEXIST) {
-                        perror("mkdir");
-                        return 1;
-                    }
-                    if (mkdir(".tmp/extra/COMMAND_DATA", 0755) != 0 && errno != EEXIST) {
-                        perror("mkdir");
-                        return 1;
-                    }
-                    break;
-                case CATPKG_CATPACKAGE:
-                case CATSTRAP_CATPKG_LITE:
-                case CATSTRAP_CATPKG_NET:
-                case CATSTRAPLIB_CATPACKAGE:
-                case CATSTRAP_BIN_CATPACKAGE:
-                    if (mkdir(".tmp/usr", 0755) != 0 && errno != EEXIST) {
-                        perror("mkdir");
-                        return 1;
-                    }
-                    if (mkdir(".tmp/usr/bin", 0755) != 0 && errno != EEXIST) {
-                        perror("mkdir");
-                        return 1;
-                    }
-                    
-                    switch(code) {
-                        case CATSTRAPLIB_CATPACKAGE:
-                            if (mkdir(".tmp/usr/lib", 0755) != 0 && errno != EEXIST) {
-                                perror("mkdir");
-                                return 1;
-                            }
-                            if (mkdir(".tmp/usr/lib/catpkg", 0755) != 0 && errno != EEXIST) {
-                                perror("mkdir");
-                                return 1;
-                            }
-                            break;
-                    }
-
-                    break;
-            }
-            break;
+    if (remove_tmp_directory() != 0) {
+        fprintf(stderr, "[FATAL] Failed to remove old temporary directory.\n");
+        return 1;
     }
 
-    // build-data copy payload to tmp struct
+    char *arch = NULL;
+    int prepare_package_arch = 0;
+#define X(option) if (code == option) prepare_package_arch = 1;
+    BUILD_ARCH_PREPARE(X)
+#undef X
+    if (prepare_package_arch && prepare_arch(&arch) != 0)
+        return 1;
 
-    char cc = '\0'; // a10h - optional
+    int use_tmp = 0;
+#define X(option) if (code == option) use_tmp = 1;
+    BUILD_TMP(X)
+#undef X
+    if (use_tmp && mkdir(".tmp", 0755) != 0 && errno != EEXIST) {
+        perror("mkdir .tmp");
+        return 1;
+    }
 
-    if(
-        code == CATPKG_BUILD_CATPACKAGE ||
-        code == CATSTRAP_CATPKG ||
-        code == CATSTRAP_CATPKG_LITE ||
-        code == CATSTRAP_CATPKG_NET ||
-        code == CATPKG_CATPACKAGE ||
-        code == CATPKG_MAKE ||
-        code == CATSTRAP_BIN_CATPACKAGE ||
-        code == CATSTRAPLIB_CATPACKAGE
-    ) {
-        printf(CHOOSE_A10E);
-        
-        printf("Enter a number: ");
+#define X(option, path) \
+    if (code == option) { \
+        char destination[PATH_MAX]; \
+        int n = snprintf(destination, sizeof(destination), ".tmp/%s", path); \
+        if (n < 0 || (size_t)n >= sizeof(destination)) return 1; \
+        if (mkdir(destination, 0755) != 0 && errno != EEXIST) { \
+            perror(destination); \
+            return 1; \
+        } \
+    }
+    BUILD_DIRECTORIES(X)
+#undef X
 
-        cc = getchar();
+#define X(option, source, destination) \
+    if (code == option) { \
+        char target[PATH_MAX]; \
+        int n = snprintf(target, sizeof(target), ".tmp/%s", destination); \
+        if (n < 0 || (size_t)n >= sizeof(target)) return 1; \
+        if (copy_file(source, target) != 0) return 1; \
+    }
+    BUILD_DATA_IMPORT(X)
+#undef X
 
-        while (getchar() != '\n')
-            ;
-        if(cc != '1' && cc != '2') {
-            printf("Invalid architecture.\n");
+    char postprocess_macros[2048] = {0};
+    size_t postprocess_size = 0;
+#define X(option, key, value) \
+    if (code == option) { \
+        int n = snprintf(postprocess_macros + postprocess_size, \
+            sizeof(postprocess_macros) - postprocess_size, \
+            "%s%s=%s", postprocess_size ? ":" : "", key, value); \
+        if (n < 0 || (size_t)n >= sizeof(postprocess_macros) - postprocess_size) { \
+            fprintf(stderr, "Postprocess macros are too long.\n"); \
+            return 1; \
+        } \
+        postprocess_size += (size_t)n; \
+    }
+    BUILD_MACRO(X)
+#undef X
+    if (postprocess_size && setenv("POSTPROCESS_CUSTOM_MACRO", postprocess_macros, 1) != 0) {
+        perror("setenv");
+        return 1;
+    }
+
+    int need_bootstrap = 0;
+#define X(option) if (code == option) need_bootstrap = 1;
+    BUILD_BOOTSTRAP(X)
+#undef X
+    if (need_bootstrap && bootstrap_update() != 0)
+        return 1;
+
+    if (code == CATSTRAPLIB_CATPACKAGE) {
+        char source[PATH_MAX];
+        char destination[PATH_MAX];
+        int a = snprintf(source, sizeof(source), "extra/%s/catstraplib.so.0", arch);
+        int b = snprintf(destination, sizeof(destination), ".tmp/usr/lib/catpkg/catstraplib.so.%s", CATSTRAPLIB_CATPACKAGE_VERSION);
+        if (a < 0 || b < 0 || (size_t)a >= sizeof(source) || (size_t)b >= sizeof(destination))
             return 1;
-        }  
+        if (copy_file(source, destination) != 0)
+            return 1;
     }
 
-    switch(code) {
-        case CATPKG_BUILD_CATPACKAGE:
-            if (copy_file(
-                "build-data/catpkg-build/PACKAGEINFO",
-                ".tmp/PACKAGEINFO"
-            ) != 0) {
-                return 1;
-            }
+    const char *script = NULL;
+#define X(option, body) if (code == option) script = body;
+    BUILD_SCRIPTS(X)
+#undef X
 
-            if (copy_file(
-                "build-data/catpkg-build/CATPKG-BUILD-COMMAND",
-                ".tmp/CATPKG-BUILD-COMMAND"
-            ) != 0) {
-                return 1;
-            }
-            break;
-       case CATPKG_CATPACKAGE:
-            if (copy_file(
-                "build-data/PACKAGEINFO",
-                ".tmp/PACKAGEINFO"
-            ) != 0) {
-                return 1;
-            }
-            break;
-        case CATSTRAP_BIN_CATPACKAGE:
-            if (copy_file(
-                "build-data/catstrap-bin/PACKAGEINFO",
-                ".tmp/PACKAGEINFO"
-            ) != 0) {
-                return 1;
-            }
-
-            if (copy_file(
-                "build-data/catstrap-bin/catstrap-bin",
-                ".tmp/usr/bin/catstrap-bin"
-            ) != 0) {
-                return 1;
-            }
-            break;
-        case CATSTRAPLIB_CATPACKAGE:
-            bootstrap_update();
-
-            if (copy_file(
-                "build-data/catstraplib/PACKAGEINFO",
-                ".tmp/PACKAGEINFO"
-            ) != 0) {
-                return 1;
-            }
-
-            switch (cc) {
-                case '1':
-                    if (copy_file(
-                        "extra/x86_64/catstraplib.so.0",
-                        ".tmp/usr/lib/catpkg/catstraplib.so."__CATPKG_BUILDER_SUFIX__
-                    ) != 0) {
-                        return 1;
-                    }         
-                    break;
-
-                case '2':
-                    if (copy_file(
-                        "extra/aarch64/catstraplib.so.0",
-                        ".tmp/usr/lib/catpkg/catstraplib.so."__CATPKG_BUILDER_SUFIX__
-                    ) != 0) {
-                        return 1;
-                    }
-                    break;
-
-                default:
-                    printf("Invalid architecture.\n");
-                    break;
-            }
-            break;
-        case FILESYSTEM_CATPACKAGE:
-            if (copy_file(
-                "build-data/filesystem/PACKAGEINFO",
-                ".tmp/PACKAGEINFO"
-            ) != 0) {
-                return 1;
-            }
-            break;
-        case FILESYSTEM_ANDROID_CATPACKAGE:
-            if (copy_file(
-                "build-data/filesystem-android/PACKAGEINFO",
-                ".tmp/PACKAGEINFO"
-            ) != 0) {
-                return 1;
-            }
-            break;
-    } 
-
-    // compile and build
-    switch (code) {
-        case FILESYSTEM_CATPACKAGE:
-            chdir(".tmp");
-
-            printf(__BUILDING_FILESYSTEM_CATPACKAGE__ "...\n");
-            setenv("CATSTRAP-BIN", "../build-data/catstrap-bin/catstrap-bin", 0);
-            catpkg_build(NULL);
-            break;
-        case FILESYSTEM_ANDROID_CATPACKAGE:
-            chdir(".tmp");
-
-            setenv("CATSTRAP-BIN", "../build-data/catstrap-bin/catstrap-bin", 0);
-            printf(__BUILDING_FILESYSTEM_ANDROID_CATPACKAGE__ "...\n");
-            catpkg_build(NULL);
-            break;
-
-        case CATSTRAP_CATPKG:
-        case CATSTRAP_CATPKG_LITE:
-        case CATSTRAP_CATPKG_NET:
-        {
-                bootstrap_update();
-
-                switch (cc) {
-                    case '1':
-                        execl(
-                            "build-cast.sh",
-                            "???",
-                            GCC_X86_64,
-                            "./extra/x86_64",
-                            code == 1 ?
-                                "catstrap-catpkg"
-                            : code == 2 ?
-                                "catstrap-catpkg-lite"
-                            : 
-                                "catstrap-catpkg-net"
-                            ,
-                            CAST_HEADER_FREE_STR,
-                            code == 1 ?
-                                "catstrap-catpkg-" __CATSTRAP_CATPKG_BUILDER_SUFIX__ "-x86_64"
-                            : code == 2 ?
-                                "catstrap-catpkg-lite-" __CATSTRAP_CATPKG_BUILDER_SUFIX__ "-x86_64"
-                            :
-                                "catstrap-catpkg-net-" __CATSTRAP_CATPKG_BUILDER_SUFIX__ "-x86_64"
-                            ,
-                            (char *)NULL
-                        );
-                        break;
-
-                    case '2':
-                        execl(
-                            "build-cast.sh",
-                            "???",
-                            GCC_AARCH64,
-                            "./extra/aarch64",
-                            code == 1 ?
-                                "catstrap-catpkg"
-                            : code == 2 ?
-                                "catstrap-catpkg-lite"
-                            : 
-                                "catstrap-catpkg-net"
-                            ,
-                            CAST_HEADER_FREE_STR,
-                            code == 1 ?
-                                "catstrap-catpkg-" __CATSTRAP_CATPKG_BUILDER_SUFIX__ "-aarch64"
-                            : code == 2 ?
-                                "catstrap-catpkg-lite-" __CATSTRAP_CATPKG_BUILDER_SUFIX__ "-aarch64"
-                            :
-                                "catstrap-catpkg-net-" __CATSTRAP_CATPKG_BUILDER_SUFIX__ "-aarch64"
-                            ,
-                            (char *)NULL
-                        );
-                        break;
-
-                    default:
-                        _exit(1);
-                }
-            break;
+    int script_tmp = 0;
+#define X(option) if (code == option) script_tmp = 1;
+    BUILD_SCRIPT_TMP(X)
+#undef X
+    if (script) {
+        if (script_tmp && chdir(".tmp") != 0) {
+            perror("chdir .tmp");
+            return 1;
         }
-        case CATSTRAP_BIN_CATPACKAGE:
-            chdir(".tmp");
-
-            bootstrap_update();
-
-            printf(__BUILDING_CATSTRAP_BIN_CATPACKAGE__ "...\n");
-            setenv("CATSTRAP-BIN", "../build-data/catstrap-bin/catstrap-bin", 0);
-            switch (cc) {
-                case '1':
-                    catpkg_build("x86_64");            
-                    break;
-
-                case '2':
-                    catpkg_build("aarch64");             
-                    break;
-
-                default:
-                    printf("Invalid architecture.\n");
-                    break;
-            }            
-
-            break;
-        case CATSTRAPLIB_CATPACKAGE:
-            chdir(".tmp");
-
-            printf(__BUILDING_CATSTRAP_BIN_CATPACKAGE__ "...\n");
-            setenv("CATSTRAP-BIN", "../build-data/catstrap-bin/catstrap-bin", 0);
-            switch (cc) {
-                case '1':
-                    catpkg_build("x86_64");            
-                    break;
-
-                case '2':
-                    catpkg_build("aarch64");  
-                    break;
-
-                default:
-                    printf("Invalid architecture.\n");
-                    break;
-            }
-
-            break;
-        case CATPKG_CATPACKAGE:
-        {      
-            chdir(".tmp");
-
-            bootstrap_update();
-
-            printf(__BUILDING_CATPKG_CATPACKAGE__ "...\n");
-
-            pid_t pid = fork();
-
-            if (pid < 0) {
-                perror("fork");
-                return 1;
-            }
-
-            if (pid == 0) {
-                switch (cc) {
-                    case '1':
-                        execl(
-                            "/bin/sh",
-                            "sh",
-                            "-c",
-                            GCC_X86_64 " -std=c23 -D_XOPEN_SOURCE=700 -D_DEFAULT_SOURCE "
-                            "-Os -ffunction-sections -fdata-sections "
-                            "-Wextra -Wpedantic -I../include "
-                            "../catpkg/cli.c "
-                            "../catpkg/main.c "
-                            "../extra/x86_64/catstraplib.so.0 "
-                            " -Wl,--gc-sections "
-                            "-Wl,-rpath,/usr/lib "
-                            "-o usr/bin/catpkg",
-                            (char *)NULL
-                        );        
-                        break;
-
-                    case '2':
-                        execl(
-                            "/bin/sh",
-                            "sh",
-                            "-c",
-                            GCC_AARCH64 " -std=c23 -D_XOPEN_SOURCE=700 -D_DEFAULT_SOURCE "
-                            "-Os -ffunction-sections -fdata-sections "
-                            "-Wextra -Wpedantic -I../include "
-                            "../catpkg/cli.c "
-                            "../catpkg/main.c "
-                            "../extra/aarch64/catstraplib.so.0 "
-                            " -Wl,--gc-sections "
-                            "-Wl,-rpath,/usr/lib "
-                            "-o usr/bin/catpkg",
-                            (char *)NULL
-                        );       
-                        break;
-
-                    default:
-                        printf("Invalid architecture.\n");
-                        break;
-                }
-
-                perror("gcc");
-                _exit(127);
-            }
-
-            int status;
-
-            if (waitpid(pid, &status, 0) < 0) {
-                perror("waitpid");
-                return 1;
-            }
-
-            if (!WIFEXITED(status) ||
-                WEXITSTATUS(status) != 0) {
-
-                fprintf(stderr, "gcc: compilation failed\n");
-                return 1;
-            }
-
-            pid = fork();
-
-            if (pid < 0) {
-                perror("fork");
-                return 1;
-            }
-
-            if (pid == 0) {
-                switch (cc) {
-                    case '1':
-                        execl(
-                            "/bin/sh",
-                            "sh",
-                            "-c",
-                            GCC_X86_64 " -std=c23 -D_XOPEN_SOURCE=700 -D_DEFAULT_SOURCE "
-                            "-Os -ffunction-sections -fdata-sections "
-                            "-Wextra -Wpedantic -I../include "
-                            "../catpkg-command/main.c "
-                            "../extra/x86_64/catstraplib.so.0 "
-                            " -Wl,--gc-sections "
-                            "-Wl,-rpath,/usr/lib "
-                            "-o usr/bin/catpkg-command",
-                            (char *)NULL
-                        );        
-                        break;
-
-                    case '2':
-                        execl(
-                            "/bin/sh",
-                            "sh",
-                            "-c",
-                            GCC_AARCH64 " -std=c23 -D_XOPEN_SOURCE=700 -D_DEFAULT_SOURCE "
-                            "-Os -ffunction-sections -fdata-sections "
-                            "-Wextra -Wpedantic -I../include "
-                            "../catpkg-command/main.c "
-                            "../extra/aarch64/catstraplib.so.0 "
-                            " -Wl,--gc-sections "
-                            "-Wl,-rpath,/usr/lib "
-                            "-o usr/bin/catpkg-command",
-                            (char *)NULL
-                        );       
-                        break;
-
-                    default:
-                        printf("Invalid architecture.\n");
-                        break;
-                }
-
-                perror("gcc");
-                _exit(127);
-            }
-
-            if (waitpid(pid, &status, 0) < 0) {
-                perror("waitpid");
-                return 1;
-            }
-
-            if (!WIFEXITED(status) ||
-                WEXITSTATUS(status) != 0) {
-
-                fprintf(stderr, "gcc: compilation failed\n");
-                return 1;
-            }
-
-            setenv("CATSTRAP-BIN", "../build-data/catstrap-bin/catstrap-bin", 0);
-
-            switch (cc) {
-                case '1':
-                catpkg_build("x86_64");            
-                    break;
-
-                case '2':
-                catpkg_build("aarch64");             
-                    break;
-
-                default:
-                    printf("Invalid architecture.\n");
-                    break;
-            }
-
-            printf("Compilation successful.\n");
-
-            break;
-        }
-        case CATPKG_BUILD_CATPACKAGE:
-        { 
-            chdir(".tmp");
-
-            printf("Building \"catpkg-build-(aarch64/x86_64)@X.X.X.catpackage\"...\n");
-
-            pid_t pid = fork();
-
-            if (pid < 0) {
-                perror("fork");
-                return 1;
-            }   
-
-            if (pid == 0) {
-                switch (cc) {
-                    case '1':   
-                        execl(
-                            "/bin/sh",
-                            "sh",
-                            "-c",
-                            GCC_X86_64 " -std=c23 -D_XOPEN_SOURCE=700 -D_DEFAULT_SOURCE "
-                            "-Os -ffunction-sections -fdata-sections "
-                            "-Wextra -Wpedantic -I../include "
-                            "../catpkg-build/build.c "
-                            "../catpkg-build/catpkg-build-cli.c "
-                            "/usr/lib/catstraplib.so.0 "
-                            " -Wl,--gc-sections "
-                            "-Wl,-rpath,/usr/lib "
-                            "-o extra/COMMAND_DATA/catpkg-build-cli",
-                            (char *)NULL
-                        );        
-                        break;
-
-                    case '2':
-                        execl(
-                            "/bin/sh",
-                            "sh",
-                            "-c",
-                            GCC_AARCH64 " -std=c23 -D_XOPEN_SOURCE=700 -D_DEFAULT_SOURCE "
-                            "-Os -ffunction-sections -fdata-sections "
-                            "-Wextra -Wpedantic -I../include "
-                            "../catpkg-build/build.c "
-                            "../catpkg-build/catpkg-build-cli.c "
-                            "/usr/lib/catstraplib.so.0 "
-                            " -Wl,--gc-sections "
-                            "-Wl,-rpath,/usr/lib "
-                            "-o extra/COMMAND_DATA/catpkg-build-cli",
-                            (char *)NULL
-                        );       
-                        break;
-
-                    default:
-                        printf("Invalid architecture.\n");
-                        break;
-                }
-
-                perror("gcc");
-                _exit(127);
-            }
-
-            int status;
-
-            if (waitpid(pid, &status, 0) < 0) {
-                perror("waitpid");
-                return 1;
-            }
-
-            if (!WIFEXITED(status) ||
-                WEXITSTATUS(status) != 0) {
-
-                fprintf(stderr, "gcc: compilation failed\n");
-                return 1;
-            }
-
-            setenv("CATSTRAP-BIN", "../build-data/catstrap-bin/catstrap-bin", 0);
-
-            switch (cc) {
-                case '1':
-                catpkg_build("x86_64");            
-                    break;
-
-                case '2':
-                catpkg_build("aarch64");             
-                    break;
-
-                default:
-                    printf("Invalid architecture.\n");
-                    break;
-            }
-
-            printf("Compilation successful.\n");
-
-            break;
-        }
-        case CATPKG_MAKE:
-        {                
-                bootstrap_update();
-
-                printf("Building catpkg-make...\n");
-                pid_t pid = fork();
-
-                if (pid < 0) {
-                    perror("fork");
-                    return 1;
-                }
-
-                if (pid == 0) {
-                    switch (cc) {
-                        case '1':
-                            execl(
-                                "/usr/bin/" GCC_X86_64,
-                                GCC_X86_64,
-                                "-D_DEFAULT_SOURCE",
-                                "-D_XOPEN_SOURCE=700",
-                                "-std=c23",
-                                "-Wextra",
-                                "-Wpedantic",
-                                "-Iinclude",
-                                "catpkg-build/build.c",
-                                "src/make-cli.c",
-                                "extra/x86_64/catstrap.o",
-                                "-static",
-                                "-o",
-                                "catpkg-make-x86_64",
-                                (char *)NULL
-                            );                        
-                            break;
-
-                        case '2':
-                            execl(
-                                "/usr/bin/" GCC_AARCH64,
-                                GCC_AARCH64,
-                                "-D_DEFAULT_SOURCE",
-                                "-D_XOPEN_SOURCE=700",
-                                "-std=c23",
-                                "-Wextra",
-                                "-Wpedantic",
-                                "-Iinclude",
-                                "catpkg-build/build.c",
-                                "src/make-cli.c",
-                                "extra/aarch64/catstrap.o",
-                                "-static",
-                                "-o",
-                                "catpkg-make-aarch64",
-                                (char *)NULL
-                            );
-                            break;
-
-                        default:
-                            printf("Invalid architecture.\n");
-                            break;
-                    }
-
-                    perror("gcc");
-                    _exit(127);
-                }
-
-                int status;
-
-                if (waitpid(pid, &status, 0) < 0) {
-                    perror("waitpid");
-                    return 1;
-                }
-
-                if (!WIFEXITED(status) ||
-                    WEXITSTATUS(status) != 0) {
-
-                    fprintf(stderr, "gcc: compilation failed\n");
-                    return 1;
-                }
-
-                printf("Compilation successful.\n");
-            break;
-        }
-        default:
-            printf("Unknown option.\n");
-            break;
+        if (run_script(script) != 0)
+            return 1;
+    } else if (use_tmp && chdir(".tmp") != 0) {
+        perror("chdir .tmp");
+        return 1;
     }
 
+    int package = 0;
+#define X(option) if (code == option) package = 1;
+    BUILD_PACKAGE(X)
+#undef X
+    if (package) {
+        if (use_tmp && !script_tmp && script && chdir(".tmp") != 0) {
+            perror("chdir .tmp");
+            return 1;
+        }
+        if (setenv("CATSTRAP-BIN", "../build-data/catstrap-bin/catstrap-bin", 0) != 0) {
+            perror("setenv");
+            return 1;
+        }
+
+        catpkg_build(arch);
+    }
+    printf("Build completed.\n");
     return 0;
 }
